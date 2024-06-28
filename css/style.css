@@ -1,0 +1,215 @@
+body {
+  max-width: 1440px;
+  overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+/**
+* Clear inner floats
+*/
+.clearfix::after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+/**
+* Main content containers
+* 1. Make the container full-width with a maximum width
+* 2. Center it in the viewport
+* 3. Leave some space on the edges, especially valuable on small screens
+*/
+.container {
+  max-width: 1440px; /* 1 */
+  margin-left: auto; /* 2 */
+  margin-right: auto; /* 2 */
+  padding-left: 20px; /* 3 */
+  padding-right: 20px; /* 3 */
+  width: 100%; /* 1 */
+}
+
+/**
+* Hide text while making it readable for screen readers
+* 1. Needed in WebKit-based browsers because of an implementation bug;
+*    See: https://code.google.com/p/chromium/issues/detail?id=457146
+*/
+.hide-text {
+  overflow: hidden;
+  padding: 0; /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/**
+* Hide element while making it readable for screen readers
+* Shamelessly borrowed from HTML5Boilerplate:
+* https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+*/
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+body h1 {
+  font-family: "Anton", sans-serif;
+  text-align: center;
+  font-size: 44px;
+  color: rgb(255, 209, 91);
+}
+body h2 {
+  font-family: "Anton", sans-serif;
+  font-size: 18px;
+  color: rgb(27, 27, 27);
+}
+body h3 {
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+  color: rgb(122, 122, 122);
+}
+body p {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  color: rgb(27, 27, 27);
+}
+body p .ingredients {
+  color: rgb(122, 122, 122);
+}
+body p .text_placeholder {
+  font-size: 16px;
+  color: rgb(122, 122, 122);
+}
+body p .time_button {
+  font-size: 12px;
+  text-align: center;
+}
+
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+.recipes_cards {
+  width: 380px;
+  height: 731px;
+  border-radius: 21px;
+  background: white;
+  box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+}
+
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+/*! minireset.css v0.0.6 | MIT License | github.com/jgthms/minireset.css */
+html, body, p, ol, ul, li, dl, dt, dd, blockquote, figure, fieldset, legend, textarea, pre,
+iframe, hr, h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+ul {
+  list-style: none;
+}
+
+button, input,
+select {
+  margin: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+img, video {
+  height: auto;
+  max-width: 100%;
+}
+
+iframe {
+  border: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td, th {
+  padding: 0;
+}
+
+/*# sourceMappingURL=style.css.map */
