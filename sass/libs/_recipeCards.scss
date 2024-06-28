@@ -1,0 +1,32 @@
+@import '../components/variables';
+@import '../layouts/l-recipe-card';
+
+
+image .recipeCard {
+    width: 380px;
+    height: 253px;
+    object-fit: cover;
+    object-position: 50% 50%;
+}
+
+.time_cta {
+    display: inline-flex;
+    position: absolute;
+    top: 21px;
+    right: 22px;
+    width: 33px;
+    padding: 5px 15px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    border-radius: 14px;
+    background: $main-color;
+}
+
+h2 {
+    margin: 32px 25px;
+}
+
+
+

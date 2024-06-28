@@ -12,5 +12,8 @@
   "license": "ISC",
   "devDependencies": {
     "sass": "^1.77.6"
+  },
+  "dependencies": {
+    "jekyll": "^3.0.0-beta1"
   }
 }
