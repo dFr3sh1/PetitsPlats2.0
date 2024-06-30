@@ -2,6 +2,7 @@
 @import './base/helpers';
 @import './base/typographie';
 @import './components/buttons';
+@import './components/searchBar';
 @import './components/variables';
 @import './layouts/l-footer';
 @import './layouts/l-header';
@@ -11,4 +12,27 @@
 @import './libs/fonts';
 @import './libs/functions';
 @import './libs/mixins';
-@import './libs/reset';
+
+.logo {
+    width: 207px;
+    height: 25.261px;
+}
+
+.searchBar input {
+    width: calc(100% - 71px);
+    height: 72px;
+    margin: 0;
+    padding: 0;
+
+    border-radius: 11px;
+    border: none;
+    
+}
+
+.searchBar input::placeholder {
+    padding-left: 35px;
+}
+
+.searchBar img {
+    padding: 10px;
+}

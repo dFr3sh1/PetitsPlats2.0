@@ -1,0 +1,11 @@
+@import './variables';
+
+.searchBar {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 954px;
+    border-radius: 11px;
+    background: white;
+    color: $second-color;
+}
