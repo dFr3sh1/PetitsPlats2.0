@@ -118,6 +118,9 @@ body h2 {
   font-size: 18px;
   color: rgb(27, 27, 27);
 }
+body h2 #recipesFound {
+  font-size: 21px;
+}
 body h3 {
   font-family: "Manrope", sans-serif;
   font-size: 12px;
@@ -166,6 +169,25 @@ body p .time_cta {
   border-radius: 11px;
   background: white;
   color: rgb(122, 122, 122);
+}
+
+.searchBar input {
+  width: calc(100% - 71px);
+  height: 72px;
+  margin: 0;
+  padding: 0;
+  border-radius: 11px;
+  border: none;
+  font-size: 16px;
+}
+
+.searchBar img {
+  padding: 10px;
+}
+
+.searchBar input[type=text] {
+  padding-left: 35px;
+  color: black;
 }
 
 @font-face {
@@ -232,21 +254,46 @@ main {
   height: 25.261px;
 }
 
-.searchBar input {
-  width: calc(100% - 71px);
-  height: 72px;
-  margin: 0;
-  padding: 0;
+section {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  padding: 21px 102px;
+  width: 1440px;
+  gap: 21px;
+}
+
+.filtersSec {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.filters {
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  padding: 17px 16px;
+  align-items: center;
+  gap: 63px;
   border-radius: 11px;
+  border: none;
+  background: white;
+  font-size: 16px;
+}
+
+input [type=text] {
   border: none;
 }
 
-.searchBar input::placeholder {
-  padding-left: 35px;
+.filtered {
+  background: rgb(255, 209, 91);
 }
 
-.searchBar img {
-  padding: 10px;
+.filterAction {
+  position: relative;
+  left: -26px;
 }
 
 /*# sourceMappingURL=style.css.map */
