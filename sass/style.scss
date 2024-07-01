@@ -4,6 +4,7 @@
 @import './components/buttons';
 @import './components/searchBar';
 @import './components/variables';
+@import './layouts/l-articles';
 @import './layouts/l-footer';
 @import './layouts/l-header';
 @import './layouts/l-hero';
@@ -60,4 +61,12 @@ input [type="text"] {
 .filterAction {
     position: relative;
     left: -26px;
+}
+
+.filterAction:focus {
+    cursor: pointer;
+}
+
+.isDisplayed {
+    display: none;
 }

@@ -205,6 +205,14 @@ body p .time_cta {
   font-style: normal;
   line-height: normal;
 }
+article {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .heroDiv {
   display: flex;
   flex-direction: column;
@@ -294,6 +302,14 @@ input [type=text] {
 .filterAction {
   position: relative;
   left: -26px;
+}
+
+.filterAction:focus {
+  cursor: pointer;
+}
+
+.isDisplayed {
+  display: none;
 }
 
 /*# sourceMappingURL=style.css.map */
