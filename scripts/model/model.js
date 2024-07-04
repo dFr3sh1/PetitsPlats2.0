@@ -1,4 +1,4 @@
-import { recipes } from "./data.js";
+import recipes from "../data/recipes.js";
 
 export async function getAllRecipes() {
     return recipes;

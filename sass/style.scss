@@ -3,6 +3,7 @@
 @import './base/typographie';
 @import './components/buttons';
 @import './components/searchBar';
+@import './components/table';
 @import './components/variables';
 @import './layouts/l-articles';
 @import './layouts/l-footer';
@@ -10,9 +11,11 @@
 @import './layouts/l-hero';
 @import './layouts/l-main';
 @import './layouts/l-recipe-card';
+@import './layouts/l-recipesSection.scss';
 @import './libs/fonts';
 @import './libs/functions';
 @import './libs/mixins';
+@import './libs/recipeCards';
 
 .logo {
     width: 207px;
@@ -70,3 +73,4 @@ input [type="text"] {
 .isDisplayed {
     display: none;
 }
+

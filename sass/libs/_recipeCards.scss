@@ -2,19 +2,26 @@
 @import '../layouts/l-recipe-card';
 
 
-image .recipeCard {
-    width: 380px;
+.thumbnail {
+    display: flex;
     height: 253px;
+}
+
+.recipeCard {
+    position: absolute;
+    width: 380px;
+    height: inherit;
     object-fit: cover;
     object-position: 50% 50%;
 }
 
 .time_cta {
     display: inline-flex;
-    position: absolute;
+    position: relative;
     top: 21px;
-    right: 22px;
+    right: -290px;
     width: 33px;
+    height: fit-content;
     padding: 5px 15px;
     justify-content: center;
     align-items: center;
@@ -24,8 +31,22 @@ image .recipeCard {
     background: $main-color;
 }
 
+.cardBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+
+}
+
 h2 {
-    margin: 32px 25px;
+
+}
+
+.description {
+    text-align: justify;
+    line-height: normal;
+    font-weight: 400;
 }
 
 

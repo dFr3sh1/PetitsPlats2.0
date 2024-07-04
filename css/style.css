@@ -16,7 +16,6 @@
 body {
   box-sizing: border-box;
   max-width: 1440px;
-  overflow-y: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -134,16 +133,36 @@ body p {
   font-size: 14px;
   color: rgb(27, 27, 27);
 }
-body p .ingredients {
+body .ingredients {
   color: rgb(122, 122, 122);
 }
-body p .text_placeholder {
+body .text_placeholder {
   font-size: 16px;
   color: rgb(122, 122, 122);
 }
-body p .time_cta {
+body .time_cta {
   font-size: 12px;
   text-align: center;
+}
+body th {
+  padding: 15px 0 15px;
+  text-align: left;
+  color: rgb(122, 122, 122);
+  font-family: "Manrope", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.08px;
+  text-transform: uppercase;
+}
+body td {
+  font-family: "Manrope", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  color: black;
 }
 
 @font-face {
@@ -205,6 +224,25 @@ body p .time_cta {
   font-style: normal;
   line-height: normal;
 }
+.ingredientsTable {
+  width: 330px;
+}
+
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
 article {
   justify-self: center;
   display: flex;
@@ -242,6 +280,13 @@ main {
   box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
 }
 
+.recipesSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 100px;
+}
+
 @font-face {
   font-family: "Anton", sans-serif;
   src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
@@ -257,6 +302,70 @@ main {
   font-style: normal;
   line-height: normal;
 }
+@font-face {
+  font-family: "Anton", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+@font-face {
+  font-family: "Manrope", sans-serif;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  line-height: normal;
+}
+.recipes_cards {
+  width: 380px;
+  height: 731px;
+  border-radius: 21px;
+  background: white;
+  box-shadow: 0px 4px 34px 30px rgba(0, 0, 0, 0.04);
+}
+
+.thumbnail {
+  display: flex;
+  height: 253px;
+}
+
+.recipeCard {
+  position: absolute;
+  width: 380px;
+  height: inherit;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+
+.time_cta {
+  display: inline-flex;
+  position: relative;
+  top: 21px;
+  right: -290px;
+  width: 33px;
+  height: fit-content;
+  padding: 5px 15px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 14px;
+  background: rgb(255, 209, 91);
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px;
+}
+
+.description {
+  text-align: justify;
+  line-height: normal;
+  font-weight: 400;
+}
+
 .logo {
   width: 207px;
   height: 25.261px;

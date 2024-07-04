@@ -12,7 +12,7 @@ const recipes = [
             },
             {
                 "ingredient" : "Jus de citron",
-                "quantity" : 2
+                "quantity" : 2,
             },
             {
                 "ingredient" : "Crème de coco",
@@ -1774,3 +1774,5 @@ const recipes = [
         "ustensils":["rouleau à patisserie","fouet"]
     }
 ]
+
+export default recipes
