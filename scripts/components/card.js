@@ -27,9 +27,9 @@ class RecipeCardTemplate {
 
         const image = document.createElement('image');
         image.classList.add('recipeCard');
-        image.src = `./assets/images/${this.image}`;
+        image.src = `assets/images/${this.image}`;
         image.alt = this.name
-        image.setAttribute('aria-hidden', false)
+        //image.setAttribute('aria-hidden', false)
         console.log(image.src)
         thumbnail.appendChild(image);
 
@@ -61,8 +61,10 @@ class RecipeCardTemplate {
             // Row to create ingredients
             const ingredientRow = document.createElement('tr');
             const ingredientCell1 = document.createElement('td');
+            ingredientCell1.classList.add('upRow')
             const ingredientCell2 = document.createElement('td');
-        
+            ingredientCell2.classList.add('upRow');
+
             ingredientCell1.textContent = this.ingredients[i].ingredient;
             if (i + 1 < this.ingredients.length) {
                 ingredientCell2.textContent = this.ingredients[i + 1].ingredient;
@@ -75,9 +77,9 @@ class RecipeCardTemplate {
             // Fila para la cantidad y unidad del primer ingrediente
             const quantityUnitRow = document.createElement('tr');
             const quantityUnitCell1 = document.createElement('td');
-            quantityUnitCell1.classList.add('ingredients')
+            quantityUnitCell1.classList.add('ingredients', 'downRow');
             const quantityUnitCell2 = document.createElement('td');
-            quantityUnitCell2.classList.add('ingredients')
+            quantityUnitCell2.classList.add('ingredients',  'downRow');
             
             if (this.ingredients[i].quantity !== undefined && this.ingredients[i].unit !== undefined) {
                 quantityUnitCell1.textContent = `${this.ingredients[i].quantity} ${this.ingredients[i].unit}`;
@@ -121,6 +123,13 @@ class RecipeCardTemplate {
             ustensil.textContent = item
 
             ustensilsContainer.appendChild(ustensil)
+        });
+
+        let areDisplayed = [servings, appliance, ustensilsContainer];
+        console.log(areDisplayed);
+
+        areDisplayed.map((item) => {
+            item.style.display = "none"
         });
 
         const cardBody = document.createElement('div');

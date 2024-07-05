@@ -4,12 +4,13 @@
 
 .thumbnail {
     display: flex;
+    flex-direction: row-reverse;
     height: 253px;
 }
 
 .recipeCard {
     position: absolute;
-    width: 380px;
+    width: 100%;
     height: inherit;
     object-fit: cover;
     object-position: 50% 50%;
@@ -17,11 +18,10 @@
 
 .time_cta {
     display: inline-flex;
-    position: relative;
-    top: 21px;
-    right: -290px;
+    position: absolute;
     width: 33px;
     height: fit-content;
+    margin: 27px;
     padding: 5px 15px;
     justify-content: center;
     align-items: center;
@@ -44,9 +44,13 @@ h2 {
 }
 
 .description {
+    height: 66px;
     text-align: justify;
     line-height: normal;
+    letter-spacing: 0.5px;
     font-weight: 400;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 

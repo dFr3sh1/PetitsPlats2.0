@@ -1,5 +1,6 @@
 import { getAllRecipes } from './model/model.js';
 import RecipeCardTemplate from './components/card.js';
+//import displayMediaRecipe from './utils/displayMedia.js';
 
 const CardContainer = document.querySelector('.recipesSection')
 
