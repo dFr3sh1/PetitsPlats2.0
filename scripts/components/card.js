@@ -25,7 +25,7 @@ class RecipeCardTemplate {
         thumbnail.classList.add('thumbnail');
         thumbnail.setAttribute('tabindex', 0);
 
-        const image = document.createElement('image');
+        const image = document.createElement('img');
         image.classList.add('recipeCard');
         image.src = `assets/images/${this.image}`;
         image.alt = this.name

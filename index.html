@@ -16,7 +16,7 @@
     <main>
         <div class="heroDiv">
             <div class="logo">
-                <img src="./assets/images/logo_les_Petits_Plats.png" class="logo" alt="Logo Les petits plats">
+                <img src="./assets/images/logo_les_Petits_Plats.png" alt="Logo Les petits plats">
             </div>
             <h1>CHERCHEZ PARMI PLUS DE 1500 RECETTES <br> 
                 DU QUOTIDIEN,SIMPLES ET DÉLICIEUSES</h1>
@@ -28,18 +28,18 @@
         <section id="filtersSection">
             <div class="filtersSec">
                 <div class="filtersDiv">
-                    <input type="text" class="filters" id="ingredient" placeholder="Ingrédients " aria-placeholder="Filtre par ingrédients"><datalist id="ingredientDatalist"></datalist></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu">
-                    <input type="text" class="filters" id="appliance" placeholder="Appareils" aria-placeholder="Filtre par appareils"><datalist id="applianceDatalist"></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu">
-                    <input type="text" class="filters" id="ustensile" placeholder="Ustensiles" aria-placeholder="Filtre par ustensiles"><datalist id="ustensileDatalist"></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu">
+                    <button type="button" class="filters" id="ingredientFilter" aria-placeholder="Filtre par ingrédients">Ingrédients<datalist id="ingredientDatalist" aria-roledescription="listbox"></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu"></button>
+                    <button type="button" class="filters" id="appareilsFilter" aria-placeholder="Filtre par appareils">Appareils<datalist id="appareilsDatalist"></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu"></button>
+                    <button type="button" class="filters" id="ustensilsFilter" aria-placeholder="Filtre par ustensiles">Ustensiles<datalist id="ustensilesDatalist"></datalist><img class="filterAction" src="./assets/images/arrow_down_vector.png" alt="Icon fleche en bas" aria-describedby="Fleche dropdown menu"></button>
                 </div>
                 <h2 id="recipesFound">
                     <span>50</span> recettes
                 </h2>
             </div>
             <div class="filteredRecipesDiv">
-                <input type="text" class="filters filtered isDisplayed" id="ingredientFiltered" aria-placeholder="Filtre par ingrédients"><datalist id="ingredientFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre">
-                <input type="text" class="filters filtered isDisplayed" id="applianceFiltered" aria-placeholder="Filtre par appareils"><datalist id="applianceFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre">
-                <input type="text" class="filters filtered isDisplayed" id="ustensileFiltered" aria-placeholder="Filtre par ustensiles"><datalist id="ustensileFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre">
+                <button type="button" class="filters filtered isDisplayed" id="ingredientFiltered" aria-placeholder="Filtrée par ingrédients">Ingrédients<datalist id="ingredientsFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre"></button>
+                <button type="button" class="filters filtered isDisplayed" id="applianceFiltered" aria-placeholder="Filtrée par appareils">Appareils<datalist id="applianceFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre"></button>
+                <button type="button" class="filters filtered isDisplayed" id="ustensileFiltered" aria-placeholder="Filtrée par ustensiles">Ustensiles<datalist id="ustensileFilteredDatalist"></datalist><img class="filterAction isDisplayed" src="./assets/images/close_selected_filter_search_vector.png" alt="Fermer" aria-describedby="Fermer le filtre"></button>
             </div>         
         </section>
         <section class="recipesSection">

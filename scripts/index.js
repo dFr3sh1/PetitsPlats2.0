@@ -1,5 +1,6 @@
-import { getAllRecipes } from './model/model.js';
+import { getAllRecipes, getAllAppliances, getAllIngredients, getAllUstensils } from './model/model.js';
 import RecipeCardTemplate from './components/card.js';
+import { createIngredientsArray } from './components/filter.js';
 //import displayMediaRecipe from './utils/displayMedia.js';
 
 const CardContainer = document.querySelector('.recipesSection')
@@ -15,9 +16,12 @@ async function main() {
             CardContainer.appendChild(card.DOMElement)
         })
 
+        createIngredientsArray(recipes)
+
     } catch (error) {
         console.error ('Error:', error)
     }
+    
 }
 
 main()

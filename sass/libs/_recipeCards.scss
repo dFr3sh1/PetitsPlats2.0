@@ -10,8 +10,10 @@
 
 .recipeCard {
     position: absolute;
-    width: 100%;
+    width: 380px ;
     height: inherit;
+    border-top-left-radius: 21px;
+    border-top-right-radius: 21px;
     object-fit: cover;
     object-position: 50% 50%;
 }
@@ -53,5 +55,28 @@ h2 {
     overflow: hidden;
 }
 
+.dropdown-menu {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 195px;
+    margin-top: 30vh;
+    margin-left: -0.94vw;
+    max-height: 300px;
+    
+    background-color: white;
+    text-align: left;
+    list-style: none;
+    overflow-y: auto;
+    z-index: 1000;
+}
+.dropdown-menu p {
+    margin: 0;
+    padding: 10px;
+    cursor: pointer;
+}
+.dropdown-menu p:hover {
+    background-color: #f0f0f0;
+}
 
 

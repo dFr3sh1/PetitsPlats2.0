@@ -17,9 +17,16 @@
 @import './libs/mixins';
 @import './libs/recipeCards';
 
+
 .logo {
-    width: 207px;
-    height: 25.261px;
+    position: relative;
+    top: -13vh;
+    left: -31.5vw;
+
+    img {
+        width: 207px;
+        height: 25.261px;
+    }
 }
 
 section {
@@ -39,9 +46,16 @@ section {
     width: 100%;
 }
 
+.filtersDiv {
+    display: flex;
+    justify-content: space-between;
+    width: 717px;
+}
+
 .filters {
     display: inline-flex;
-    width: auto;
+    justify-content: space-between;
+    width: 195px;
     height: auto;
 
     padding: 17px 16px;
@@ -63,7 +77,6 @@ input [type="text"] {
 
 .filterAction {
     position: relative;
-    left: -26px;
 }
 
 .filterAction:focus {
@@ -72,5 +85,9 @@ input [type="text"] {
 
 .isDisplayed {
     display: none;
+}
+
+.filteredRecipesDiv {
+    position: absolute;
 }
 
