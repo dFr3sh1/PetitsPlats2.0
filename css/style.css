@@ -390,12 +390,16 @@ main {
 
 .dropdown-menu {
   box-sizing: border-box;
-  display: block;
+  display: none;
+  flex-direction: column;
   position: absolute;
   width: 195px;
-  margin-top: 30vh;
+  margin-top: 27vh;
   margin-left: -0.94vw;
   max-height: 300px;
+  padding: 16px;
+  gap: 13px;
+  border-radius: 11px;
   background-color: white;
   text-align: left;
   list-style: none;

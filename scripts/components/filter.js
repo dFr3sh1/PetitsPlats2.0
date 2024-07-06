@@ -66,6 +66,6 @@ ingredientFilterButton.addEventListener('click', () => {
         existingDropdown.remove();
     } else {
         ingredientFilterButton.appendChild(dropdownMenu);
-        dropdownMenu.style.display = 'block';  // Mostrar el dropdown menu
+        dropdownMenu.style.display = 'flex';  // Mostrar el dropdown menu
     }
 });
