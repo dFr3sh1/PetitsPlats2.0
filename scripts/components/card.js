@@ -10,10 +10,7 @@ class RecipeCardTemplate {
         this.description = data.description;
         this.appliance = data.appliance
         this.ustensils = data.ustensils
-        this.DOMElement = null;
-
-        this.createCard()
-        console.log(this.createCard)
+        this.DOMElement = this.createCard()
     }
 
     createCard() {
@@ -149,7 +146,7 @@ class RecipeCardTemplate {
         cardBody.appendChild(ustensilsContainer);
         cardBody.appendChild(servings);
         
-        this.DOMElement = recipeCard
+        return recipeCard
 
     };
 }

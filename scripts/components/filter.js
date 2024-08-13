@@ -1,71 +1,31 @@
-import { getAllIngredients, getAllAppliances, getAllUstensils } from "../model/model.js";
-import recipes from "../data/recipes.js";
-
-const ingredientsFilter = document.getElementById('ingredientFilter');
-const appareilsFilter = document.getElementById('appareilsFilter');
-const ustensilsFilter = document.getElementById('ustensilsFilter');
-
-
-//Function to create the input of the filter
-export async function createFilterInput() {
-    const filterInput = document.createElement('input', type="text");
-    filterInput.classList.add('filterInput')
-    const filterInputImg = document.createElement('img');
-    filterInputImg.classList.add('filterInputImg')
-    filterInputImg.src =`assets/images/arrow_down_vector.png`;
-
-    filterInput.appendChild(filterInputImg);
-
-    return filterInput;
-} 
-
-//Function to recuperate all ingredients
-export function createIngredientsArray(recipes) {
-    const ingredientsSet = new Set();
-    for (let i = 0; i < recipes.length; i++) {
-        const ingredients = recipes[i].ingredients;
-        for (let j = 0; j < ingredients.length; j++) {
-            ingredientsSet.add(ingredients[j].ingredient);
-        }
-        console.log(ingredientsSet)
+import { dropdownMenu } from "../components/dropdownMenu.js";
+export default class Filter {
+    constructor(data, name) {
+        this.data = data
+        this.name = name
+        this.DOMElement = this.createFilter()//Result of the function
     }
-    return Array.from(ingredientsSet);
+
+    createFilter() {
+        const filter = document.createElement('div');
+        filter.classList.add('filter');
+
+        const button = document.createElement('button');
+        button.classList.add('filters');
+        button.textContent = this.name
+        button.setAttribute = ('aria-decription', 'Bouton pour afficher le menu')
+
+        const btnIcon = document.createElement('img');
+        btnIcon.src = `assets/images/arrow_down_vector.png`
+        btnIcon.alt = ('Icon fleche en bas')
+
+        filter.appendChild(button)
+        button.appendChild(btnIcon)
+
+        filter.addEventListener('click', dropdownMenu)
+        
+        
+        return filter
+    }
+
 }
-
-// Función para crear el dropdown menu
-function createDropdownMenu(ingredientsSet) {
-    const dropdown = document.getElementById('ingredientDatalist');
-    const inputIngredientsFilter = document.createElement('input')
-    dropdown.classList.add('dropdown-menu');
-    dropdown.setAttribute('aria-labelledby', 'ingredientFilter');
-    dropdown.setAttribute('role', 'menu');
-
-    for (let i = 0; i < ingredients.length; i++) {
-        const listItem = document.createElement('option');
-        listItem.setAttribute('role', 'menuitem');
-        const link = document.createElement('a');
-        link.href = '#';
-        link.textContent = ingredients[i];
-        link.setAttribute('aria-label', ingredients[i]);
-        listItem.appendChild(link);
-        dropdown.appendChild(listItem);
-    }
-
-    return dropdown;
-}
-
-// Obtener todos los ingredientes y crear el menú dropdown
-const ingredients = createIngredientsArray(recipes);
-const dropdownMenu = createDropdownMenu(ingredients);
-
-// Añadir el dropdown menu al DOM al hacer clic en el botón con id="ingredientFilter"
-const ingredientFilterButton = document.getElementById('ingredientFilter');
-ingredientFilterButton.addEventListener('click', () => {
-    const existingDropdown = document.querySelector('.dropdown-menu');
-    if (existingDropdown) {
-        existingDropdown.remove();
-    } else {
-        ingredientFilterButton.appendChild(dropdownMenu);
-        dropdownMenu.style.display = 'flex';  // Mostrar el dropdown menu
-    }
-});

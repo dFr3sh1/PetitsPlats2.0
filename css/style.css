@@ -395,7 +395,7 @@ main {
   position: absolute;
   width: 195px;
   margin-top: 27vh;
-  margin-left: -0.94vw;
+  margin-left: -0.7vw;
   max-height: 300px;
   padding: 16px;
   gap: 13px;
@@ -461,6 +461,7 @@ section {
   border: none;
   background: white;
   font-size: 16px;
+  cursor: pointer;
 }
 
 input [type=text] {
