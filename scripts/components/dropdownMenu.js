@@ -1,20 +1,36 @@
-export function createDropdownMenu(itemsArray) {
+export function createDropdownMenu(btnElement, itemsArray) {
+    // Check if itemsArray is an array
+    if (!Array.isArray(itemsArray)) {
+        console.error('createDropdownMenu expected an array, but received:', itemsArray);
+        return;
+    }
+
+    //Get the closest parent .filter div
+    const filterContainer = btnElement.closest('.filter');
+
+    //Check if dropdownContainer already exists
+    let dropdownContainer = filterContainer.querySelector('.dropdown-container');
+    if (dropdownContainer) {
+        //If it exists, remove it to hide the list
+        dropdownContainer.remove();
+        return;
+    }
 
     //Create element with the list
-    const dropdownContainer = document.createElement('div');
+    dropdownContainer = document.createElement('div');
     dropdownContainer.classList.add('dropdown-container');
 
     //Create the input for tag researches
     const filterInput = document.createElement('input');
     filterInput.setAttribute('type', 'text');
-    filterInput.setAttribute('aria-label', 'Recherche');
+    filterInput.setAttribute('aria-label', `Rechercher ${btnElement.textContent}`);
     filterInput.classList.add('filter-input');
     dropdownContainer.appendChild(filterInput);
 
     //Create the dropdown list
-    const optionList = document.createElement('ul');
-    optionList.setAttribute('role', 'listbox');
-    optionList.classList('dropdown-list');
+    const optionsList = document.createElement('ul');
+    optionsList.setAttribute('role', 'listbox');
+    optionsList.classList.add('dropdown-list');
 
     //Fill the list with arrays
     itemsArray.forEach(item => {
@@ -22,22 +38,21 @@ export function createDropdownMenu(itemsArray) {
         optionItem.setAttribute('role', 'option');
         optionItem.textContent = item;
         optionItem.classList.add('dropdown-item');
-        optionList.appendChild(optionItem);
+        optionsList.appendChild(optionItem);
     });
 
-    dropdownContainer.appendChild(optionList);
+    dropdownContainer.appendChild(optionsList);
 
     //Filter the user tags
     filterInput.addEventListener('input', (event) => {
         const filterValue = event.target.value.toLowerCase();
-        optionList.querySelectorAll('li').forEach(option => {
+        optionsList.querySelectorAll('li').forEach(option => {
             const isVisible = option.textContent.toLowerCase().includes(filterValue);
             option.style.display = isVisible ? '' : 'none';
-        })
-    })
+        });
+    });
 
-    return dropdownContainer
-    
+    filterContainer.appendChild(dropdownContainer)
 }
 
 // const ingredientsFilter = document.getElementById('ingredientFilter');

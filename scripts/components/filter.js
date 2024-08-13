@@ -1,4 +1,4 @@
-import { dropdownMenu } from "../components/dropdownMenu.js";
+import { createDropdownMenu } from "../components/dropdownMenu.js";
 export default class Filter {
     constructor(data, name) {
         this.data = data
@@ -22,7 +22,7 @@ export default class Filter {
         filter.appendChild(button)
         button.appendChild(btnIcon)
 
-        filter.addEventListener('click', dropdownMenu)
+        filter.addEventListener('click', createDropdownMenu)
         
         
         return filter
