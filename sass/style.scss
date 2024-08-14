@@ -2,6 +2,8 @@
 @import './base/helpers';
 @import './base/typographie';
 @import './components/buttons';
+@import './components/dropdown';
+@import './components/filters';
 @import './components/searchBar';
 @import './components/table';
 @import './components/variables';
@@ -31,6 +33,7 @@
 
 section {
     box-sizing: border-box;
+    position: relative;
     display:flex;
     flex-direction: column;
     padding: 21px 79px ;
@@ -39,57 +42,6 @@ section {
 
 }
 
-.filtersSec {
-    display: inline-flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-}
-
-.filtersDiv {
-    display: flex;
-    justify-content: space-between;
-    width: 717px;
-}
-
-.filters {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 195px;
-    height: auto;
-
-    padding: 17px 16px;
-    align-items: center;
-    gap: 63px;
-
-    border-radius: 11px;
-    border: none;
-    background: white;
-    font-size: 16px;
-
-    cursor: pointer;
-}
-
 input [type="text"] {
     border: none;
 }
-.filtered {
-    background: $main-color;
-}
-
-.filterAction {
-    position: relative;
-}
-
-.filterAction:focus {
-    cursor: pointer;
-}
-
-.isDisplayed {
-    display: none;
-}
-
-.filteredRecipesDiv {
-    position: absolute;
-}
-
