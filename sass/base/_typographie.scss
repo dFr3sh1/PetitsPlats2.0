@@ -38,11 +38,17 @@ body {
     }
     
     ul {
-        margin-left: -23px;
+        margin: 0;
+        padding: 0;
         list-style: none;
         text-align: left;
-        line-height: 30px;
+        line-height: 35px;
         font-family: $font-text;
+    }
+
+    ul li {
+        width: 118px;
+        margin-left: -50px;
     }
 
     .text_placeholder {
@@ -75,6 +81,11 @@ body {
         font-weight: 500;
         line-height: normal;
         color: black;
+    }
+
+    i {
+        font-weight: 400;
+        color: $second-color;
     }
 
 }

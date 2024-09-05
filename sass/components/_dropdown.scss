@@ -1,7 +1,12 @@
 @import './variables';
 
 .dropdown-container {
+    position: absolute;
+    top: 46px;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
+    z-index: 1000;
 }

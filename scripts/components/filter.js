@@ -9,6 +9,7 @@ export default class Filter {
     createFilter() {
         const filter = document.createElement('div');
         filter.classList.add('filter');
+        filter.style.position ='relative'; //Ensures dropdown is positioned correctly
 
         const button = document.createElement('button');
         button.classList.add('filters');
@@ -22,9 +23,6 @@ export default class Filter {
         filter.appendChild(button)
         button.appendChild(btnIcon)
 
-        filter.addEventListener('click', createDropdownMenu)
-        
-        
         return filter
     }
 

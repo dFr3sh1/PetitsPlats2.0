@@ -3,7 +3,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
     if (!Array.isArray(itemsArray)) {
         console.error('createDropdownMenu expected an array, but received:', itemsArray);
         return;
-    }
+    };
 
     //Get the closest parent .filter div
     const filterContainer = btnElement.closest('.filter');
@@ -18,14 +18,23 @@ export function createDropdownMenu(btnElement, itemsArray) {
 
     //Create element with the list
     dropdownContainer = document.createElement('div');
-    dropdownContainer.classList.add('dropdown-container');
+    dropdownContainer.classList.add('dropdown-container');//Class conflict for clicking and displaying the dropdown, maybe an #id?
 
     //Create the input for tag researches
+    const divFilter = document.createElement('div');
+    divFilter.classList.add('divFilter');
+    const divFilterInput = document.createElement('div');
+    divFilterInput.classList.add('divFilterInput')
     const filterInput = document.createElement('input');
     filterInput.setAttribute('type', 'text');
     filterInput.setAttribute('aria-label', `Rechercher ${btnElement.textContent}`);
     filterInput.classList.add('filter-input');
-    dropdownContainer.appendChild(filterInput);
+    const filterIcon = document.createElement('i');
+    filterIcon.classList.add('fa-solid', 'fa-magnifying-glass')
+    divFilterInput.appendChild(filterInput);
+    divFilterInput.appendChild(filterIcon);
+    divFilter.appendChild(divFilterInput);
+    dropdownContainer.appendChild(divFilter);
 
     //Create the dropdown list
     const optionsList = document.createElement('ul');

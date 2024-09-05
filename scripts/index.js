@@ -22,9 +22,10 @@ try {
     const ingredientFilterButton = new Filter(ingredients, 'Ingrédients');
     filtersDiv.appendChild(ingredientFilterButton.DOMElement);
 
-    ingredientFilterButton.DOMElement.addEventListener('click', () => {
-        const dropdownMenu = createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
-    })
+    ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+        e.stopPropagation(); //Prevent the event from bubbling up
+        createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
+    });
     
     //Display filter appliances
     const appliance = getAllAppliances();
@@ -32,8 +33,9 @@ try {
     const applianceFilterButton = new Filter(appliance, 'Appareils');
     filtersDiv.appendChild(applianceFilterButton.DOMElement);
 
-    applianceFilterButton.DOMElement.addEventListener('click', () => {
-        const dropdownMenu = createDropdownMenu(applianceFilterButton.DOMElement, appliance);
+    applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+        e.stopPropagation();
+        createDropdownMenu(applianceFilterButton.DOMElement, appliance);
     })
 
     //Display filter appliances
@@ -42,10 +44,17 @@ try {
     const ustensilFilterButton = new Filter(ustensils, 'Ustensiles');
     filtersDiv.appendChild(ustensilFilterButton.DOMElement);
 
-    ustensilFilterButton.DOMElement.addEventListener('click', () => {
-        const dropdownMenu = createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
-    })
+    ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+        e.stopPropagation();
+        createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
+    });
     
+    // Close dropdown when clicking outside
+    // document.addEventListener('click', () => {
+    //     document.querySelectorAll('.dropdown-container').forEach(dropdown => {
+    //         dropdown.remove();
+    //     });
+    // });
 
 } catch (error) {
     console.error ('Error:', error)

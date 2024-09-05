@@ -137,11 +137,16 @@ body .ingredients {
   color: rgb(122, 122, 122);
 }
 body ul {
-  margin-left: -23px;
+  margin: 0;
+  padding: 0;
   list-style: none;
   text-align: left;
-  line-height: 30px;
+  line-height: 35px;
   font-family: "Manrope", sans-serif;
+}
+body ul li {
+  width: 118px;
+  margin-left: -50px;
 }
 body .text_placeholder {
   font-size: 16px;
@@ -171,6 +176,10 @@ body td {
   line-height: normal;
   color: black;
 }
+body i {
+  font-weight: 400;
+  color: rgb(122, 122, 122);
+}
 
 @font-face {
   font-family: "Anton", sans-serif;
@@ -188,9 +197,14 @@ body td {
   line-height: normal;
 }
 .dropdown-container {
+  position: absolute;
+  top: 46px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: white;
+  z-index: 1000;
 }
 
 @font-face {
@@ -209,11 +223,11 @@ body td {
   line-height: normal;
 }
 .filtersSec {
-  position: absolute;
-  display: inline-flex;
+  position: relative;
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
+  width: 100%;
   z-index: 999;
 }
 
@@ -221,6 +235,23 @@ body td {
   display: flex;
   justify-content: space-between;
   width: 717px;
+}
+
+.divFilter {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px;
+}
+
+.divFilterInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border: 1px solid #5c6066;
+}
+
+.divFilterInput:has(input:focus) {
+  border: 1px solid black;
 }
 
 .filter {
@@ -247,6 +278,17 @@ body td {
 .filter-input {
   width: 163px;
   height: 36px;
+  padding-left: 10px;
+  border: 0;
+  font-size: 16px;
+}
+
+.filter-input:focus {
+  outline: 0;
+}
+
+.fa-magnifying-glass {
+  margin-right: 10px;
 }
 
 .filtered {
@@ -267,6 +309,12 @@ body td {
 
 .filteredRecipesDiv {
   position: absolute;
+}
+
+#recipesFound {
+  position: relative;
+  top: 0;
+  transform: none;
 }
 
 @font-face {
@@ -404,7 +452,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  margin-top: 63px;
+  margin-top: 8px;
 }
 
 @font-face {
