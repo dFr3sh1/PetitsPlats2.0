@@ -2,6 +2,7 @@
 
 .filtersSec {
     position: relative;
+    top: 63vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,11 +26,11 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid #5c6066;
+    border: 1px solid $second-color;
 }
 
 .divFilterInput:has(input:focus) {
-    border: 1px solid black;
+    border: 2px solid $second-color;
 }
 
 .filter {
@@ -57,7 +58,7 @@
 }
 
 .filter-input {
-    width: 163px;
+    width: 140px;
     height: 36px;
     padding-left: 10px;
     border: 0;

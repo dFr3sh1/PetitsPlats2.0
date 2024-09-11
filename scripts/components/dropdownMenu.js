@@ -18,20 +18,43 @@ export function createDropdownMenu(btnElement, itemsArray) {
 
     //Create element with the list
     dropdownContainer = document.createElement('div');
-    dropdownContainer.classList.add('dropdown-container');//Class conflict for clicking and displaying the dropdown, maybe an #id?
+    dropdownContainer.classList.add('dropdown-container');
+
+    const input = document.createElement('input');
+    input.setAttribute('type', 'text');
+    input.setAttribute('aria-label', `Rechercher ${btnElement.textContent}`);
+    input.classList.add('filter-input');
+
+    const filterIcon = document.createElement('i');
+    filterIcon.classList.add('fa-solid', 'fa-magnifying-glass');
+
+    //Function to change icon inside the input
+    function changeIcon() {
+        if (input.value.length > 0) {
+            filterIcon.classList.add('fa-xmark');
+            filterIcon.classList.remove('fa-magnifying-glass');
+        } else {
+            filterIcon.classList.remove('fa-xmark');
+            filterIcon.classList.add('fa-magnifying-glass');
+        }
+    }
+    //Listener to set changeIcon
+    input.addEventListener('input', () => {
+        changeIcon();
+    });
+
+    //Listener to clean the input
+    filterIcon.addEventListener('click', () => {
+        input.value = "";
+        changeIcon();
+    });
 
     //Create the input for tag researches
     const divFilter = document.createElement('div');
     divFilter.classList.add('divFilter');
     const divFilterInput = document.createElement('div');
     divFilterInput.classList.add('divFilterInput')
-    const filterInput = document.createElement('input');
-    filterInput.setAttribute('type', 'text');
-    filterInput.setAttribute('aria-label', `Rechercher ${btnElement.textContent}`);
-    filterInput.classList.add('filter-input');
-    const filterIcon = document.createElement('i');
-    filterIcon.classList.add('fa-solid', 'fa-magnifying-glass')
-    divFilterInput.appendChild(filterInput);
+    divFilterInput.appendChild(input);
     divFilterInput.appendChild(filterIcon);
     divFilter.appendChild(divFilterInput);
     dropdownContainer.appendChild(divFilter);
@@ -53,103 +76,12 @@ export function createDropdownMenu(btnElement, itemsArray) {
     dropdownContainer.appendChild(optionsList);
 
     //Filter the user tags
-    filterInput.addEventListener('input', (event) => {
+    input.addEventListener('input', (event) => {
         const filterValue = event.target.value.toLowerCase();
         optionsList.querySelectorAll('li').forEach(option => {
             const isVisible = option.textContent.toLowerCase().includes(filterValue);
             option.style.display = isVisible ? '' : 'none';
         });
     });
-
     filterContainer.appendChild(dropdownContainer)
 }
-
-// const ingredientsFilter = document.getElementById('ingredientFilter');
-// const appareilsFilter = document.getElementById('appareilsFilter');
-// const ustensilsFilter = document.getElementById('ustensilsFilter');
-
-
-// //Function to create the input of the filter
-// // export async function createFilterInput() {
-// //     const filterInput = document.createElement('input', type="text");
-// //     filterInput.classList.add('filterInput')
-// //     const filterInputImg = document.createElement('img');
-// //     filterInputImg.classList.add('filterInputImg')
-// //     filterInputImg.src =`assets/images/arrow_down_vector.png`;
-
-// //     filterInput.appendChild(filterInputImg);
-
-// //     return filterInput;
-// // } 
-
-// //Function to recuperate all ingredients
-// export async function createIngredientsArray() {
-//     const ingredientsfilterArray = getAllIngredients(recipes);
-//     // const ingredientsSet = new Set();
-//     // for (let i = 0; i < recipes.length; i++) {
-//     //     const ingredients = recipes[i].ingredients;
-//     //     for (let j = 0; j < ingredients.length; j++) {
-//     //         ingredientsSet.add(ingredients[j].ingredient);
-//     //     }
-//     //     console.log(ingredientsSet)
-//     // }
-//     //return Array.from(ingredientsSet);
-//     console.log(ingredientsfilterArray);
-//     return ingredientsfilterArray;
-// }
-
-// export async function createAppliancesArray() {
-//     const appliancesFilterArray = getAllAppliances(recipes);
-//     console.log(appliancesFilterArray);
-//     return appliancesFilterArray;
-// }
-
-// export async function createUstensilsArray() {
-//     const ustensilsFilterArray = getAllUstensils(recipes);
-//     console.log(ustensilsFilterArray);
-//     return ustensilsFilterArray;
-// }
-
-// const dropdownFilterArrays = [createAppliancesArray, createIngredientsArray, createUstensilsArray];
-
-// // Function to create the dropdown Menu
-// function createDropdownMenu() {
-//     const dropdown = document.querySelectorAll('.dropdwnDatalist');
-//     console.log(dropdown)
-
-
-//     // const dropdown = document.getElementById('ingredientDatalist');
-//     // const inputIngredientsFilter = document.createElement('input')
-//     // dropdown.classList.add('dropdown-menu');
-//     // dropdown.setAttribute('aria-labelledby', 'ingredientFilter');
-//     // dropdown.setAttribute('role', 'menu');
-
-//     // for (let i = 0; i < ingredients.length; i++) {
-//     //     const listItem = document.createElement('option');
-//     //     listItem.setAttribute('role', 'menuitem');
-//     //     const link = document.createElement('a');
-//     //     link.href = '#';
-//     //     link.textContent = ingredients[i];
-//     //     link.setAttribute('aria-label', ingredients[i]);
-//     //     listItem.appendChild(link);
-//     //     dropdown.appendChild(listItem);
-//     // }
-
-//     // return dropdown;
-// }
-
-// // Get all ingredients and create dropdown menu
-// const ingredients = createIngredientsArray(recipes);
-// const dropdownMenu = createDropdownMenu(ingredients);
-
-// // Add the dropdown button to the DOM
-// const ingredientFilterButton = document.getElementById('ingredientFilter');
-// ingredientFilterButton.addEventListener('click', () => {
-//     const existingDropdown = document.querySelector('.dropdown-menu');
-//     if (existingDropdown) {
-//         existingDropdown.remove();
-//     } else {
-//         ingredientFilterButton.appendChild(dropdownMenu);
-//         dropdownMenu.style.display = 'flex';  // Display dropdown menu
-//     }
-// });
