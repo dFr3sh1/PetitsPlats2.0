@@ -38,6 +38,14 @@ export function createDropdownMenu(btnElement, itemsArray) {
             filterIcon.classList.add('fa-magnifying-glass');
         }
     }
+
+    //Refresh the dropdownMenu after cleaning the x icon
+    function resetDropdownList() {
+        optionsList.querySelectorAll('li').forEach(option => {
+            option.style.display = '';
+        });
+    }
+
     //Listener to set changeIcon
     input.addEventListener('input', () => {
         changeIcon();
@@ -47,6 +55,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
     filterIcon.addEventListener('click', () => {
         input.value = "";
         changeIcon();
+        resetDropdownList();
     });
 
     //Create the input for tag researches

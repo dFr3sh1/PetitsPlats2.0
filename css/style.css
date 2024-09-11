@@ -291,6 +291,10 @@ body i {
   outline: 0;
 }
 
+.fa-xmark {
+  cursor: pointer;
+}
+
 .fa-magnifying-glass {
   margin-right: 10px;
 }
