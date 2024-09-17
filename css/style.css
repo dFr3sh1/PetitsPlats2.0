@@ -181,6 +181,25 @@ body i {
   color: rgb(122, 122, 122);
 }
 
+.filters {
+  display: inline-flex;
+  justify-content: space-between;
+  width: 195px;
+  /*height: auto;*/
+  padding: 17px 16px;
+  align-items: center;
+  gap: 63px;
+  border-radius: 11px;
+  border: none;
+  background: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.tag {
+  background-color: rgb(255, 209, 91);
+}
+
 @font-face {
   font-family: "Anton", sans-serif;
   src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
@@ -222,6 +241,7 @@ body i {
 }
 .dropdown-container .dropdown-list .highlight {
   background-color: rgb(255, 209, 91);
+  cursor: pointer;
 }
 
 @font-face {
@@ -274,7 +294,6 @@ body i {
 
 .filter {
   width: 195px;
-  background: white;
   border-radius: 12px;
 }
 
@@ -293,21 +312,6 @@ body i {
 .up-arrow {
   position: absolute;
   right: 13px;
-}
-
-.filters {
-  display: inline-flex;
-  justify-content: space-between;
-  width: 195px;
-  /*height: auto;*/
-  padding: 17px 16px;
-  align-items: center;
-  gap: 63px;
-  border-radius: 11px;
-  border: none;
-  background: white;
-  font-size: 16px;
-  cursor: pointer;
 }
 
 .filter-input {
@@ -347,7 +351,8 @@ body i {
 }
 
 .filteredRecipesDiv {
-  position: absolute;
+  position: relative;
+  margin: 21px 0 20px 0;
 }
 
 #recipesFound {
@@ -490,7 +495,7 @@ main {
 }
 
 .recipesSection {
-  top: 63vh;
+  top: 56vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;

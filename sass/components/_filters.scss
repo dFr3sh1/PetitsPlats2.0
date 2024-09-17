@@ -35,7 +35,6 @@
 
 .filter {
     width: 195px;
-    background: white;
     border-radius: 12px;
 }
 
@@ -54,24 +53,6 @@
 .up-arrow {
     position: absolute;
     right: 13px;
-}
-
-.filters {
-    display: inline-flex;
-    justify-content: space-between;
-    width: 195px;
-    /*height: auto;*/
-
-    padding: 17px 16px;
-    align-items: center;
-    gap: 63px;
-
-    border-radius: 11px;
-    border: none;
-    background: white;
-    font-size: 16px;
-
-    cursor: pointer;
 }
 
 .filter-input {
@@ -112,7 +93,8 @@
 }
 
 .filteredRecipesDiv {
-    position: absolute;
+    position: relative;
+    margin: 21px 0 20px 0;
 }
 
 #recipesFound {

@@ -1,10 +1,17 @@
 import { getAllRecipes, getAllAppliances, getAllIngredients, getAllUstensils } from './model/model.js';
 import RecipeCardTemplate from './components/card.js';
-import Filter from './components/filter.js'   
+import Filter from './components/filter.js'
+import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
 
 const CardContainer = document.querySelector('.recipesSection')
 const filtersDiv = document.querySelector('.filtersDiv')
+
+export function handleOptionClick(filterElement, item) {
+    const filterContainer = filterElement.closest('.filter');
+    createTagButton(item, filterContainer);
+    
+}
 
 try {
 
