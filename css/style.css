@@ -214,9 +214,14 @@ body i {
   margin-left: 0;
 }
 .dropdown-container .dropdown-list .dropdown-item {
+  box-sizing: border-box;
   width: 100%;
-  margin-left: 15px;
+  padding-left: 15px;
+  margin-left: 0;
   text-align: left;
+}
+.dropdown-container .dropdown-list .highlight {
+  background-color: rgb(255, 209, 91);
 }
 
 @font-face {

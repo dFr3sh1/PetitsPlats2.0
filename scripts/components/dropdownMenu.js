@@ -43,6 +43,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
     function resetDropdownList() {
         optionsList.querySelectorAll('li').forEach(option => {
             option.style.display = '';
+            option.classList.remove('highlight')
         });
     }
 
@@ -80,10 +81,6 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.textContent = item;
         optionItem.classList.add('dropdown-item');
         optionsList.appendChild(optionItem);
-
-        if(optionItem === input.value){
-            optionItem.style.backgroundColor = 'yellow'
-        }
     });
 
     dropdownContainer.appendChild(optionsList);
@@ -92,8 +89,17 @@ export function createDropdownMenu(btnElement, itemsArray) {
     input.addEventListener('input', (event) => {
         const filterValue = event.target.value.toLowerCase();
         optionsList.querySelectorAll('li').forEach(option => {
-            const isVisible = option.textContent.toLowerCase().includes(filterValue);
+            const optionText = option.textContent.toLowerCase();
+        const isVisible = optionText.includes(filterValue);
+
+            //Displays or hide the option upon the research
             option.style.display = isVisible ? '' : 'none';
+
+            if (optionText === filterValue) {
+                option.classList.add('highlight');
+            } else {
+                option.classList.remove('highlight');
+            }
         });
     });
     filterContainer.appendChild(dropdownContainer)
