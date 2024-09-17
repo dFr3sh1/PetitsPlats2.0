@@ -1,4 +1,3 @@
-import { createDropdownMenu } from "../components/dropdownMenu.js";
 export default class Filter {
     constructor(data, name) {
         this.data = data
@@ -14,14 +13,25 @@ export default class Filter {
         const button = document.createElement('button');
         button.classList.add('filters');
         button.textContent = this.name
-        button.setAttribute = ('aria-decription', 'Bouton pour afficher le menu')
+        button.setAttribute = ('aria-description', 'Bouton pour afficher le menu')
 
-        const btnIcon = document.createElement('img');
-        btnIcon.src = `assets/images/arrow_down_vector.png`
-        btnIcon.alt = ('Icon fleche en bas')
+        const btnIcons = document.createElement('div');
+        btnIcons.classList.add('btn-icons');
+
+        const btnDownArrow = document.createElement('img');
+        btnDownArrow.src = `assets/images/arrow_down_vector.png`;
+        btnDownArrow.classList.add('down-arrow')
+        btnDownArrow.alt = ('Icon fleche en bas');
+
+        const btnUpArrow = document.createElement('img');
+        btnUpArrow.src = `assets/images/arrow_up_vector.png`;
+        btnUpArrow.classList.add('up-arrow', 'isDisplayed')
+        btnUpArrow.alt = ('Icon fleche en haut');
 
         filter.appendChild(button)
-        button.appendChild(btnIcon)
+        button.appendChild(btnIcons)
+        btnIcons.appendChild(btnDownArrow)
+        btnIcons.appendChild(btnUpArrow)
 
         return filter
     }

@@ -1,7 +1,7 @@
 import { getAllRecipes, getAllAppliances, getAllIngredients, getAllUstensils } from './model/model.js';
 import RecipeCardTemplate from './components/card.js';
 import Filter from './components/filter.js'   
-import { createDropdownMenu } from './components/dropdownMenu.js';
+import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
 
 const CardContainer = document.querySelector('.recipesSection')
 const filtersDiv = document.querySelector('.filtersDiv')
@@ -25,6 +25,7 @@ try {
     ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
         e.stopPropagation(); //Prevent the event from bubbling up
         createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
+        changeBtnIcon(ingredientFilterButton.DOMElement);
     });
     
     //Display filter appliances
@@ -36,6 +37,7 @@ try {
     applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
         e.stopPropagation();
         createDropdownMenu(applianceFilterButton.DOMElement, appliance);
+        changeBtnIcon(applianceFilterButton.DOMElement);
     })
 
     //Display filter appliances
@@ -47,7 +49,10 @@ try {
     ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
         e.stopPropagation();
         createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
+        changeBtnIcon(ustensilFilterButton.DOMElement);
+
     });
+
     
     // Close dropdown when clicking outside
     // document.addEventListener('click', () => {

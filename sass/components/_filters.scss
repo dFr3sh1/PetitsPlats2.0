@@ -39,6 +39,23 @@
     border-radius: 12px;
 }
 
+.btn-icons {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.down-arrow {
+    position: relative;
+    left: 3px;
+}
+
+.up-arrow {
+    position: absolute;
+    right: 13px;
+}
+
 .filters {
     display: inline-flex;
     justify-content: space-between;

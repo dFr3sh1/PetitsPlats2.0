@@ -12,5 +12,17 @@
     z-index: 1000;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
+
+    .dropdown-list {
+        width: 100%;
+        margin-left: 0;
+        
+        .dropdown-item {
+            width: 100%;
+            margin-left: 15px;
+            text-align: left;
+        }
+    }
+
     
 }

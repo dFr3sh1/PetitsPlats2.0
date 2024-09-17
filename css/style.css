@@ -209,6 +209,15 @@ body i {
   border-bottom-left-radius: 12px;
   border-bottom-right-radius: 12px;
 }
+.dropdown-container .dropdown-list {
+  width: 100%;
+  margin-left: 0;
+}
+.dropdown-container .dropdown-list .dropdown-item {
+  width: 100%;
+  margin-left: 15px;
+  text-align: left;
+}
 
 @font-face {
   font-family: "Anton", sans-serif;
@@ -262,6 +271,23 @@ body i {
   width: 195px;
   background: white;
   border-radius: 12px;
+}
+
+.btn-icons {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.down-arrow {
+  position: relative;
+  left: 3px;
+}
+
+.up-arrow {
+  position: absolute;
+  right: 13px;
 }
 
 .filters {
