@@ -148,6 +148,10 @@ body ul li {
   width: 118px;
   margin-left: -50px;
 }
+body ul li:hover {
+  cursor: pointer;
+  background-color: rgb(255, 209, 91);
+}
 body .text_placeholder {
   font-size: 16px;
   color: rgb(122, 122, 122);
@@ -180,6 +184,9 @@ body i {
   font-weight: 400;
   color: rgb(122, 122, 122);
 }
+body .fa-solid {
+  color: black;
+}
 
 .filters {
   display: inline-flex;
@@ -188,7 +195,6 @@ body i {
   /*height: auto;*/
   padding: 17px 16px;
   align-items: center;
-  gap: 63px;
   border-radius: 11px;
   border: none;
   background: white;
@@ -198,6 +204,9 @@ body i {
 
 .tag {
   background-color: rgb(255, 209, 91);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 @font-face {
@@ -304,6 +313,10 @@ body i {
   align-items: center;
 }
 
+.clear-btn {
+  border: none;
+}
+
 .down-arrow {
   position: relative;
   left: 3px;
@@ -353,11 +366,15 @@ body i {
 .filteredRecipesDiv {
   position: relative;
   margin: 21px 0 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 #recipesFound {
-  position: relative;
+  position: absolute;
   top: 0;
+  right: 0;
   transform: none;
 }
 

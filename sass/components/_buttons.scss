@@ -6,7 +6,6 @@
 
     padding: 17px 16px;
     align-items: center;
-    gap: 63px;
 
     border-radius: 11px;
     border: none;
@@ -18,4 +17,7 @@
 
 .tag {
     background-color: $main-color;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
