@@ -233,15 +233,12 @@ body i {
   margin-left: 0;
 }
 .dropdown-container .dropdown-list .dropdown-item {
-  box-sizing: border-box;
   width: 100%;
-  padding-left: 15px;
-  margin-left: 0;
+  margin-left: 15px;
   text-align: left;
 }
 .dropdown-container .dropdown-list .highlight {
   background-color: rgb(255, 209, 91);
-  cursor: pointer;
 }
 
 @font-face {

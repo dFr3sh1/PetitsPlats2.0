@@ -18,16 +18,13 @@
         margin-left: 0;
         
         .dropdown-item {
-            box-sizing: border-box;
             width: 100%;
-            padding-left: 15px;
-            margin-left: 0;
+            margin-left: 15px;
             text-align: left;
         }
 
         .highlight {
             background-color: $main-color;
-            cursor: pointer;
         }
     }
 

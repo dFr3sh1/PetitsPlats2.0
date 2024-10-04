@@ -45,7 +45,6 @@ export function createDropdownMenu(btnElement, itemsArray) {
     function resetDropdownList() {
         optionsList.querySelectorAll('li').forEach(option => {
             option.style.display = '';
-            option.classList.remove('highlight')
         });
     }
 
@@ -90,6 +89,10 @@ export function createDropdownMenu(btnElement, itemsArray) {
         });
 
         optionsList.appendChild(optionItem);
+
+        if(optionItem === input.value){
+            optionItem.style.backgroundColor = 'yellow'
+        }
     });
 
     dropdownContainer.appendChild(optionsList);
