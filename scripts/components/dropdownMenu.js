@@ -1,5 +1,3 @@
-import { handleOptionClick } from "../index.js";
-
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
     if (!Array.isArray(itemsArray)) {
@@ -81,13 +79,6 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.setAttribute('role', 'option');
         optionItem.textContent = item;
         optionItem.classList.add('dropdown-item');
-
-        optionItem.addEventListener('click', () => {
-            handleOptionClick(btnElement, item);
-            input.value= "";
-            dropdownContainer.remove();
-        });
-
         optionsList.appendChild(optionItem);
 
         if(optionItem === input.value){
@@ -102,12 +93,11 @@ export function createDropdownMenu(btnElement, itemsArray) {
         const filterValue = event.target.value.toLowerCase();
         optionsList.querySelectorAll('li').forEach(option => {
             const optionText = option.textContent.toLowerCase();
-            const isVisible = optionText.includes(filterValue);
+        const isVisible = optionText.includes(filterValue);
 
             //Displays or hide the option upon the research
             option.style.display = isVisible ? '' : 'none';
 
-            //Highlight if match exactly
             if (optionText === filterValue) {
                 option.classList.add('highlight');
             } else {

@@ -1,32 +1,26 @@
-export function createTagButton(tagName, filterContainer) {
-    //Verify if existing tag
-    const existingTag = filterContainer.querySelector(`button.tag[data-tag="${tagName}"]`);
-    if(existingTag){
-        return;//Nothing if existing tag
+
+
+
+
+export default class FilteredTag {
+    constructor (data, name) {
+        this.data = data;
+        this.name = name;
+        this.DOMElement = this.createFilteredTag()
     }
 
-    //Create button tag
-    const tagButton = document.createElement('button');
-    tagButton.classList.add('tag', 'filters');
-    tagButton.setAttribute('data-tag', tagName);
-    tagButton.textContent = tagName;
+    createFilteredTag() {
+        const filtered = document. createElement('div');
+        filtered.classList.add('filtered');
+        filtered.style.position = 'relative';
 
-    //Create x icon
-    const removeIcon = document.createElement('i');
-    removeIcon.classList.add('fa-solid', 'fa-xmark');
-    tagButton.appendChild(removeIcon);
+        const button = document.createElement('button');
+        button.classList.add('filters', 'filtered', 'isDisplayed');
+        button.textContent = this.name;
+        button.setAttribute = ('aria-description', 'Bouton pour afficher à la recette');
 
-    removeIcon.addEventListener('click', () => {
-        tagButton.remove(); //Remove tag button
-    });
+        filtered.appendChild(button)
 
-    const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
-    if(!filteredRecipesDiv) {
-        const newTagsContainer = document.createElement('div');
-        newTagsContainer.classList.add('filteredRecipesDiv');
-        filterContainer.appendChild(newTagsContainer);
-        newTagsContainer.appendChild(tagButton);
-    } else {
-        filteredRecipesDiv.appendChild(tagButton);
     }
+    
 }
