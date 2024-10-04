@@ -56,6 +56,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
         input.value = "";
         changeIcon();
         resetDropdownList();
+
     });
 
     //Create the input for tag researches
@@ -79,6 +80,14 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.setAttribute('role', 'option');
         optionItem.textContent = item;
         optionItem.classList.add('dropdown-item');
+
+        optionItem.addEventListener('click', () => {
+            handleOptionClick(btnElement, item);
+            input.value= "";
+            dropdownContainer.remove();
+            changeBtnIcon(btnElement);
+        });
+
         optionsList.appendChild(optionItem);
 
         if(optionItem === input.value){
