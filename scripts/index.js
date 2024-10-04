@@ -4,6 +4,7 @@ import Filter from './components/filter.js';
 import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
 import { clearFilterTags } from './components/clearTags.js';
+//import { toggleClearButton, clearFilterTags } from './components/clearTags.js';
 
 const CardContainer = document.querySelector('.recipesSection');
 const filtersDiv = document.querySelector('.filtersDiv');
@@ -18,31 +19,21 @@ const selectedTags = {
 export function handleOptionClick(filterElement, item) {
     const filterContainer = filterElement.closest('.filter');
 
-    // Identify button clicked
-    const filterName = filterElement.textContent.trim().toLowerCase();
-    let filterType;
+    // Retrieve the filter type from the data-type attribute
+    const filterType = filterContainer.getAttribute('data-type');
 
-    if (filterName.includes('ingrédients')) {
-        filterType = 'ingredients';
-    } else if (filterName.includes('appareils')) {
-        filterType = 'appliances';
-    } else if (filterName.includes('ustensiles')) {
-        filterType = 'ustensils';
-    } else {
-        console.error('Filtre non reconnu:', filterName);
+    if (!filterType) {
+        console.error('Unrecognized filter type.');
         return;
     }
 
-    if (!selectedTags[filterType]) {
-        console.error('Filtre non reconnu ou indéfini', filterType);
-        return;
+    // Ensure the selectedTags array for this filter type exists
+    if (!Array.isArray(selectedTags[filterType])) {
+        selectedTags[filterType] = []; // Initialize the array if not already
     }
 
-    // Create a tag button with the list
+    // Now create the tag button with the correct filterType's selectedTags
     createTagButton(item, filterContainer, selectedTags[filterType]);
-
-    // Ensure clear button behaves correctly
-    clearFilterTags(filterContainer);
 }
 
 try {
@@ -56,7 +47,9 @@ try {
     // Display filter ingredient
     const ingredients = getAllIngredients();
     const ingredientFilterButton = new Filter(ingredients, 'Ingrédients');
+    ingredientFilterButton.DOMElement.setAttribute('data-type', 'ingredients'); // Set data-type for ingredients
     filtersDiv.appendChild(ingredientFilterButton.DOMElement);
+
 
     ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
         e.stopPropagation();
@@ -67,6 +60,7 @@ try {
     // Display filter appliances
     const appliance = getAllAppliances();
     const applianceFilterButton = new Filter(appliance, 'Appareils');
+    applianceFilterButton.DOMElement.setAttribute('data-type', 'appliances'); // Set data-type for appliances
     filtersDiv.appendChild(applianceFilterButton.DOMElement);
 
     applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
@@ -78,6 +72,7 @@ try {
     // Display filter ustensils
     const ustensils = getAllUstensils();
     const ustensilFilterButton = new Filter(ustensils, 'Ustensiles');
+    ustensilFilterButton.DOMElement.setAttribute('data-type', 'ustensils'); // Set data-type for utensils
     filtersDiv.appendChild(ustensilFilterButton.DOMElement);
 
     ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {

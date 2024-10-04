@@ -242,8 +242,10 @@ body .fa-solid {
   margin-left: 0;
 }
 .dropdown-container .dropdown-list .dropdown-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding-left: 15px;
   width: 100%;
-  margin-left: 15px;
   text-align: left;
 }
 .dropdown-container .dropdown-list .highlight {
@@ -265,9 +267,12 @@ body .fa-solid {
   font-style: normal;
   line-height: normal;
 }
+#filtersSection {
+  top: 63vh;
+}
+
 .filtersSec {
   position: relative;
-  top: 63vh;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -300,7 +305,6 @@ body .fa-solid {
 
 .filter {
   width: 195px;
-  background: white;
   border-radius: 12px;
 }
 
@@ -525,7 +529,7 @@ main {
 }
 
 .recipesSection {
-  top: 63vh;
+  top: 57vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;

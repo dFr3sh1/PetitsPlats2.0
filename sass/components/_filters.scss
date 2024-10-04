@@ -1,8 +1,11 @@
 @import './variables';
 
+#filtersSection {
+    top: 63vh;
+}
+
 .filtersSec {
     position: relative;
-    top: 63vh;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -35,7 +38,7 @@
 
 .filter {
     width: 195px;
-    background: white;
+
     border-radius: 12px;
 }
 

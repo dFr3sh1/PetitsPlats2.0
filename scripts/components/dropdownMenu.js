@@ -1,3 +1,5 @@
+import { handleOptionClick } from "../index.js";
+
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
     if (!Array.isArray(itemsArray)) {
