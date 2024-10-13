@@ -202,13 +202,6 @@ body .fa-solid {
   cursor: pointer;
 }
 
-.tag {
-  background-color: rgb(255, 209, 91);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
 @font-face {
   font-family: "Anton", sans-serif;
   src: url("https://fonts.googleapis.com/css2?family=Anton&display=swap");
@@ -336,7 +329,6 @@ body .fa-solid {
   /*height: auto;*/
   padding: 17px 16px;
   align-items: center;
-  gap: 63px;
   border-radius: 11px;
   border: none;
   background: white;
@@ -386,6 +378,18 @@ body .fa-solid {
   display: flex;
   flex-direction: column;
   gap: 15px;
+}
+
+.tag {
+  background-color: rgb(255, 209, 91);
+  max-height: 52.33px;
+}
+
+.tagTxt {
+  font-size: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 #recipesFound {

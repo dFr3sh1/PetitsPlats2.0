@@ -10,7 +10,7 @@ const CardContainer = document.querySelector('.recipesSection');
 const filtersDiv = document.querySelector('.filtersDiv');
 
 // Stock the selectedTags
-const selectedTags = {
+export const selectedTags = {
     ingredients: [],
     appliances: [],
     ustensils: [],
@@ -18,8 +18,6 @@ const selectedTags = {
 
 export function handleOptionClick(filterElement, item) {
     const filterContainer = filterElement.closest('.filter');
-
-    // Retrieve the filter type from the data-type attribute
     const filterType = filterContainer.getAttribute('data-type');
 
     if (!filterType) {
@@ -27,13 +25,9 @@ export function handleOptionClick(filterElement, item) {
         return;
     }
 
-    // Ensure the selectedTags array for this filter type exists
-    if (!Array.isArray(selectedTags[filterType])) {
-        selectedTags[filterType] = []; // Initialize the array if not already
-    }
-
-    // Now create the tag button with the correct filterType's selectedTags
-    createTagButton(item, filterContainer, selectedTags[filterType]);
+    // Use selectedTags object for managing the selected tags array
+    createTagButton(item, filterContainer);
+    console.log(createTagButton)
 }
 
 try {
