@@ -3,6 +3,7 @@ import RecipeCardTemplate from './components/card.js';
 import Filter from './components/filter.js';
 import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
+import { handleSearchInput } from './components/searchBar.js';
 
 
 const CardContainer = document.querySelector('.recipesSection');
@@ -14,6 +15,26 @@ export const selectedTags = {
     appliances: [],
     ustensils: [],
 };
+
+//Update the displayed recipe cards
+function updateRecipeCards(recipes) {
+    CardContainer.innerHTML = '';//To clear existing cards
+    recipes.forEach(recipe => {
+        const card = new RecipeCardTemplate(recipe);
+        CardContainer.appendChild(card.DOMElement);
+    });
+}
+
+//Display no result messages
+function displayNoResultsMessage() {
+    CardContainer.innerHTML = '<p>On n\'a pas trouvé de recettes';
+}
+
+//Update the number of recipes
+function updateRecipesFound(count) {
+    const resultsCount = document.getElementById('resultsCount');
+    resultsCount.textContent = `${count}`
+}
 
 export function handleOptionClick(filterElement, item) {
     const filterContainer = filterElement.closest('.filter');
@@ -38,10 +59,14 @@ export function handleOptionClick(filterElement, item) {
     createTagButton(item, filterContainer, selectedTagsArray);
 }
 
-
 try {
     // Display all recipes
     const recipes = getAllRecipes();
+    updateRecipeCards(recipes);
+
+    //Init search functionality
+    handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags)
+
     recipes.forEach(recipe => {
         const card = new RecipeCardTemplate(recipe);
         CardContainer.appendChild(card.DOMElement);
