@@ -144,3 +144,19 @@
     right: 0;
     transform: none;
 }
+
+.clear-btn:focus {
+    outline: 3px solid #005fcc; /* High-contrast outline for focus */
+    outline-offset: 2px;        /* Spacing between element and outline */
+}
+
+.clear-btn {
+    /* Ensure button contrast meets WCAG AA (4.5:1 for small text) */
+    color: black;
+    text-decoration-line: underline;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    font-size: 16px;
+    border-radius: 5px;
+}

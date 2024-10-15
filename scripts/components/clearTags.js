@@ -1,19 +1,45 @@
 export function clearFilterTags(filterContainer) {
+    let clearButton = filterContainer.querySelector('.clear-btn');
+
+    if (!clearButton) {
+        // Create the clear button with the text "Nettoyer la sélection"
+        clearButton = document.createElement('button');
+        clearButton.classList.add('clear-btn');
+        clearButton.setAttribute('aria-label', 'Nettoyer la sélection');
+        clearButton.setAttribute('role', 'button');
+        clearButton.setAttribute('tabindex', '0'); // Ensure keyboard access
+        clearButton.textContent = 'Nettoyer la sélection'; // Set the button text
+
+        // Add event listener to clear all tags within this filter
+        clearButton.addEventListener('click', () => {
+            const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
+            if (filteredRecipesDiv) {
+                filteredRecipesDiv.innerHTML = ''; // Clear all tags
+                toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
+                filteredRecipesDiv.remove();  // Remove filteredRecipesDiv after clearing all tags
+            }
+        });
+
+        filterContainer.appendChild(clearButton);
+    }
+
     const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
-    const clearButton = filterContainer.querySelector('.clear-btn');
+    toggleClearButton(filteredRecipesDiv, clearButton);  // Check whether to show or hide clear button
+}
 
-    if (filteredRecipesDiv) {
-        filteredRecipesDiv.innerHTML = ''; // Remove all tag buttons
+export function toggleClearButton(filteredRecipesDiv, clearButton) {
+    const tagButtons = filteredRecipesDiv ? filteredRecipesDiv.querySelectorAll('button.tag') : [];
+    const hasEnoughTags = tagButtons.length >= 3;
+
+    // If the clearButton is null, return early
+    if (!clearButton) {
+        return;
     }
 
-    // Clear the selectedTags array for this filter
-    const filterType = filterContainer.getAttribute('data-type');
-    if (filterType && selectedTags[filterType]) {
-        selectedTags[filterType].length = 0; // Clear the selected tags
-    }
-
-    // Hide the clear button if no tags remain
-    if (clearButton) {
-        clearButton.style.display = 'none';
+    // If there are 3 or more tags, show the clear button; otherwise, hide it
+    if (hasEnoughTags) {
+        clearButton.style.display = 'block';  // Show clear button
+    } else {
+        clearButton.style.display = 'none';   // Hide clear button
     }
 }

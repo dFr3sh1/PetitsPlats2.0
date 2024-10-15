@@ -3,8 +3,7 @@ import RecipeCardTemplate from './components/card.js';
 import Filter from './components/filter.js';
 import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
-import { clearFilterTags } from './components/clearTags.js';
-//import { toggleClearButton, clearFilterTags } from './components/clearTags.js';
+
 
 const CardContainer = document.querySelector('.recipesSection');
 const filtersDiv = document.querySelector('.filtersDiv');
@@ -25,10 +24,20 @@ export function handleOptionClick(filterElement, item) {
         return;
     }
 
-    // Use selectedTags object for managing the selected tags array
-    createTagButton(item, filterContainer);
-    console.log(createTagButton)
+    // Get the correct selectedTags array based on the filter type
+    let selectedTagsArray;
+    if (filterType === 'ingredients') {
+        selectedTagsArray = selectedTags.ingredients;
+    } else if (filterType === 'appliances') {
+        selectedTagsArray = selectedTags.appliances;
+    } else if (filterType === 'ustensils') {
+        selectedTagsArray = selectedTags.ustensils;
+    }
+
+    // Pass the selectedTagsArray to createTagButton
+    createTagButton(item, filterContainer, selectedTagsArray);
 }
+
 
 try {
     // Display all recipes
