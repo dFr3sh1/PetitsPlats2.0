@@ -301,6 +301,12 @@ body .fa-solid {
   border-radius: 12px;
 }
 
+#recipesCountTitle {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
 .btn-icons {
   display: flex;
   flex-wrap: nowrap;
@@ -553,7 +559,7 @@ main {
 }
 
 .recipesSection {
-  top: 57vh;
+  top: 62vh;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
