@@ -3,11 +3,7 @@ import RecipeCardTemplate from './components/card.js';
 import Filter from './components/filter.js';
 import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
-import { handleSearchInput } from './components/searchBar.js';
-
-
-const CardContainer = document.querySelector('.recipesSection');
-const filtersDiv = document.querySelector('.filtersDiv');
+import { handleSearchInput, updateFilters } from './components/searchBar.js';
 
 // Stock the selectedTags
 export const selectedTags = {
@@ -18,7 +14,8 @@ export const selectedTags = {
 
 //Update the displayed recipe cards
 function updateRecipeCards(recipes) {
-    CardContainer.innerHTML = '';//To clear existing cards
+    const CardContainer = document.querySelector('.recipesSection');
+    CardContainer.innerHTML = ''; // Clear existing cards
     recipes.forEach(recipe => {
         const card = new RecipeCardTemplate(recipe);
         CardContainer.appendChild(card.DOMElement);
@@ -27,15 +24,17 @@ function updateRecipeCards(recipes) {
 
 //Display no result messages
 function displayNoResultsMessage() {
-    CardContainer.innerHTML = '<p>On n\'a pas trouvé de recettes';
+    const CardContainer = document.querySelector('.recipesSection');
+    CardContainer.innerHTML = '<p>On n\'a pas trouvé de recettes</p>';
 }
 
 //Update the number of recipes
 function updateRecipesFound(count) {
     const resultsCount = document.getElementById('resultsCount');
-    resultsCount.textContent = `${count}`
+    resultsCount.textContent = `${count}`;
 }
 
+// Function to handle filter option click
 export function handleOptionClick(filterElement, item) {
     const filterContainer = filterElement.closest('.filter');
     const filterType = filterContainer.getAttribute('data-type');
@@ -59,56 +58,57 @@ export function handleOptionClick(filterElement, item) {
     createTagButton(item, filterContainer, selectedTagsArray);
 }
 
-try {
-    // Display all recipes
-    const recipes = getAllRecipes();
-    updateRecipeCards(recipes);
+// DOMContentLoaded event listener
+document.addEventListener("DOMContentLoaded", function () {
+    const CardContainer = document.querySelector('.recipesSection');
+    const filtersDiv = document.querySelector('.filtersDiv');
 
-    //Init search functionality
-    handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags)
+    try {
+        // Display all recipes
+        const recipes = getAllRecipes();
+        updateRecipeCards(recipes);
 
-    recipes.forEach(recipe => {
-        const card = new RecipeCardTemplate(recipe);
-        CardContainer.appendChild(card.DOMElement);
-    });
+        // Init search functionality
+        handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags);
+        updateFilters(selectedTags);
 
-    // Display filter ingredient
-    const ingredients = getAllIngredients();
-    const ingredientFilterButton = new Filter(ingredients, 'Ingrédients');
-    ingredientFilterButton.DOMElement.setAttribute('data-type', 'ingredients'); // Set data-type for ingredients
-    filtersDiv.appendChild(ingredientFilterButton.DOMElement);
+        // Display filter ingredient
+        const ingredients = getAllIngredients();
+        const ingredientFilterButton = new Filter(ingredients, 'Ingrédients');
+        ingredientFilterButton.DOMElement.setAttribute('data-type', 'ingredients'); 
+        filtersDiv.appendChild(ingredientFilterButton.DOMElement);
 
+        ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+            e.stopPropagation();
+            createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
+            changeBtnIcon(ingredientFilterButton.DOMElement);
+        });
 
-    ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
-        e.stopPropagation();
-        createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
-        changeBtnIcon(ingredientFilterButton.DOMElement);
-    });
+        // Display filter appliances
+        const appliances = getAllAppliances();
+        const applianceFilterButton = new Filter(appliances, 'Appareils');
+        applianceFilterButton.DOMElement.setAttribute('data-type', 'appliances'); 
+        filtersDiv.appendChild(applianceFilterButton.DOMElement);
 
-    // Display filter appliances
-    const appliance = getAllAppliances();
-    const applianceFilterButton = new Filter(appliance, 'Appareils');
-    applianceFilterButton.DOMElement.setAttribute('data-type', 'appliances'); // Set data-type for appliances
-    filtersDiv.appendChild(applianceFilterButton.DOMElement);
+        applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+            e.stopPropagation();
+            createDropdownMenu(applianceFilterButton.DOMElement, appliances);
+            changeBtnIcon(applianceFilterButton.DOMElement);
+        });
 
-    applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
-        e.stopPropagation();
-        createDropdownMenu(applianceFilterButton.DOMElement, appliance);
-        changeBtnIcon(applianceFilterButton.DOMElement);
-    });
+        // Display filter ustensils
+        const ustensils = getAllUstensils();
+        const ustensilFilterButton = new Filter(ustensils, 'Ustensiles');
+        ustensilFilterButton.DOMElement.setAttribute('data-type', 'ustensils'); 
+        filtersDiv.appendChild(ustensilFilterButton.DOMElement);
 
-    // Display filter ustensils
-    const ustensils = getAllUstensils();
-    const ustensilFilterButton = new Filter(ustensils, 'Ustensiles');
-    ustensilFilterButton.DOMElement.setAttribute('data-type', 'ustensils'); // Set data-type for utensils
-    filtersDiv.appendChild(ustensilFilterButton.DOMElement);
+        ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
+            e.stopPropagation();
+            createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
+            changeBtnIcon(ustensilFilterButton.DOMElement);
+        });
 
-    ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
-        e.stopPropagation();
-        createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
-        changeBtnIcon(ustensilFilterButton.DOMElement);
-    });
-
-} catch (error) {
-    console.error('Error:', error);
-}
+    } catch (error) {
+        console.error('Error:', error);
+    }
+});

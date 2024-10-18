@@ -3,6 +3,7 @@ import RecipeCardTemplate from './card.js'
 export function updateRecipeCards(recipes) {
     const cardContainer = document.getElementById('cardContainer');
     cardContainer.innerHTML = '';
+    console.log(cardContainer);
 
     recipes.forEach(recipe => {
         const card = new RecipeCardTemplate(recipe);
@@ -11,8 +12,8 @@ export function updateRecipeCards(recipes) {
 }
 
 export function updateRecipesFound(recipeCount) {
-    const resultCountElement = document.getElementById('resultCount');
-    resultCountElement.textContent = `${recipeCount}`;
+    const resultCountElement = document.getElementById('resultsCount');
+    resultCountElement.textContent = `${count}`;
 }
 
 export function displayNoResultsMessage() {

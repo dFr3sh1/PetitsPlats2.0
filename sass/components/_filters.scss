@@ -117,10 +117,13 @@
     display: none;
 }
 
-.filteredRecipesDiv {
+.filteredRecipesDiv {   
+    display: none;
+}
+
+.filteredRecipesDiv.visible {
     position: relative;
     margin: 21px 0 20px 0;
-    
     display: flex;
     flex-direction: column;
     gap: 15px;
