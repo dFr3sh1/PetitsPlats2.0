@@ -6,8 +6,8 @@ export function handleSearchInput(recipes, updateRecipeCards, displayNoResultsMe
     // Initial update to show all recipes count
     updateRecipesFound(recipes.length);
 
-    searchBar.addEventListener('input', () => {
-        const searchTerm = searchBar.value.toLowerCase();
+    searchBar.addEventListener('input', (e) => {
+        const searchTerm = e.target.value.trim().toLowerCase();
 
         // Start search only after 3 characters
         if (searchTerm.length < 3 && selectedTags.ingredients.length === 0 && selectedTags.appliances.length === 0 && selectedTags.ustensils.length === 0) {

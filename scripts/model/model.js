@@ -20,8 +20,6 @@ export function getAllIngredients() {
         .map(ingredient => ingredient.charAt(0).toUpperCase() + ingredient.slice(1))
         .sort();
 
-        console.log(ingredientsArray)
-
     return ingredientsArray
 }
 
@@ -39,9 +37,7 @@ export function getAllUstensils() {
     //Convert the set in an array and sort it
     const ustensilsArray = Array.from(ustensilsSet)
         .map(ustensil => ustensil.charAt(0).toUpperCase() + ustensil.slice(1))
-        .sort();
-
-        console.log(ustensilsArray)    
+        .sort(); 
 
     return ustensilsArray
 }
@@ -70,15 +66,11 @@ export function getAllAppliances() {
             appliancesSet.add(normalizedAppliance);
         });
     });
-    
-    console.log(appliancesSet);
 
     //Convert the set in an array and sort it
     const appliancesArray = Array.from(appliancesSet)
         .map(appliance => appliance.charAt(0).toUpperCase() + appliance.slice(1))
         .sort();
-
-        console.log(appliancesArray)
 
     return appliancesArray
 }

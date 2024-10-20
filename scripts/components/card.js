@@ -123,7 +123,6 @@ class RecipeCardTemplate {
         });
 
         let areDisplayed = [servings, appliance, ustensilsContainer];
-        console.log(areDisplayed);
 
         areDisplayed.map((item) => {
             item.style.display = "none"

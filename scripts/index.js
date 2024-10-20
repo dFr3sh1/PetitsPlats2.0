@@ -4,6 +4,7 @@ import Filter from './components/filter.js';
 import { createTagButton } from './components/filteredTag.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
 import { handleSearchInput, updateFilters } from './components/searchBar.js';
+import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from './components/updateUI.js';
 
 // Stock the selectedTags
 export const selectedTags = {
@@ -11,28 +12,6 @@ export const selectedTags = {
     appliances: [],
     ustensils: [],
 };
-
-//Update the displayed recipe cards
-function updateRecipeCards(recipes) {
-    const CardContainer = document.querySelector('.recipesSection');
-    CardContainer.innerHTML = ''; // Clear existing cards
-    recipes.forEach(recipe => {
-        const card = new RecipeCardTemplate(recipe);
-        CardContainer.appendChild(card.DOMElement);
-    });
-}
-
-//Display no result messages
-function displayNoResultsMessage() {
-    const CardContainer = document.querySelector('.recipesSection');
-    CardContainer.innerHTML = '<p>On n\'a pas trouvé de recettes</p>';
-}
-
-//Update the number of recipes
-function updateRecipesFound(count) {
-    const resultsCount = document.getElementById('resultsCount');
-    resultsCount.textContent = `${count}`;
-}
 
 // Function to handle filter option click
 export function handleOptionClick(filterElement, item) {
@@ -60,7 +39,7 @@ export function handleOptionClick(filterElement, item) {
 
 // DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", function () {
-    const CardContainer = document.querySelector('.recipesSection');
+    const cardContainer = document.querySelector('.recipesSection');
     const filtersDiv = document.querySelector('.filtersDiv');
 
     try {

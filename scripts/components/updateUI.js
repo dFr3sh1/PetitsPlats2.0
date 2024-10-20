@@ -1,9 +1,9 @@
 import RecipeCardTemplate from './card.js'
 
 export function updateRecipeCards(recipes) {
-    const cardContainer = document.getElementById('cardContainer');
+    const cardContainer = document.querySelector('.recipesSection');
     cardContainer.innerHTML = '';
-    console.log(cardContainer);
+    console.log(cardContainer)
 
     recipes.forEach(recipe => {
         const card = new RecipeCardTemplate(recipe);
@@ -11,12 +11,12 @@ export function updateRecipeCards(recipes) {
     });
 }
 
-export function updateRecipesFound(recipeCount) {
+export function updateRecipesFound(count) {
     const resultCountElement = document.getElementById('resultsCount');
     resultCountElement.textContent = `${count}`;
 }
 
 export function displayNoResultsMessage() {
-    const cardContainer = document.getElementById('cardContainer');
+    const cardContainer = document.querySelector('.recipesSection');
     cardContainer.innerHTML = '<p>Aucune recette trouvée.</p>';
 }
