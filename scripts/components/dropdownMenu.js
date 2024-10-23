@@ -92,9 +92,9 @@ export function createDropdownMenu(btnElement, itemsArray) {
 
         optionsList.appendChild(optionItem);
 
-        if(optionItem === input.value){
-            optionItem.style.backgroundColor = 'yellow'
-        }
+        // if(optionItem === input.value){
+        //     optionItem.style.backgroundColor = 'yellow'
+        // }
     });
 
     dropdownContainer.appendChild(optionsList);
@@ -119,7 +119,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
     filterContainer.appendChild(dropdownContainer)
 }
 
-//Functionto change btn icons arrows
+//Function to change btn icons arrows
 export function changeBtnIcon(filterElement) {
     const btnDownArrow = filterElement.querySelector('.down-arrow');
     const btnUpArrow = filterElement.querySelector('.up-arrow');

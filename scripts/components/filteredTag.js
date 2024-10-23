@@ -1,75 +1,65 @@
+import { selectedTags } from "../index.js";
+import { getAllRecipes } from "../model/model.js";
 import { clearFilterTags } from "./clearTags.js";
 import { toggleClearButton } from "./clearTags.js";
+import { filterRecipesByTags } from "./filterTags.js";
+import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
 
-    export function createTagButton(tagName, filterContainer, selectedTags) {
-        const existingTag = filterContainer.querySelector(`button.tag[data-tag="${tagName}"]`);
-        if (existingTag) {
-            return; // Do nothing if the tag already exists
-        }
-    
-        // Handle tag limit (max 3)
-        if (selectedTags.length >= 3) {
-            const firstTag = selectedTags.shift(); // Remove the first tag
-            const firstTagButton = filterContainer.querySelector(`button.tag[data-tag="${firstTag}"]`);
-            if (firstTagButton) {
-                firstTagButton.remove(); // Remove the button from the DOM
-            }
-        }
-    
-        selectedTags.push(tagName);
-    
-        // Create the tag button
-        const tagButton = document.createElement('button');
-        tagButton.classList.add('tag', 'filters');
-        tagButton.setAttribute('data-tag', tagName);
-        tagButton.textContent = tagName;
-    
-        // Create the x-mark remove icon
-        const removeIcon = document.createElement('i');
-        removeIcon.classList.add('fa-solid', 'fa-circle-xmark');
-        tagButton.appendChild(removeIcon);
-    
-        // Remove tag on click
-        removeIcon.addEventListener('click', () => {
-            tagButton.remove();
-            const index = selectedTags.indexOf(tagName);
-            if (index > -1) {
-                selectedTags.splice(index, 1); // Remove the tag from the array
-            }
-    
-            // Check visibility after tag removal
-            const clearButton = filterContainer.querySelector('.clear-btn');
-            toggleClearButton(filteredRecipesDiv, clearButton);
-    
-            // Hide filteredRecipesDiv if no tags left
-            if (selectedTags.length === 0) {
-                filteredRecipesDiv.classList.remove('visible'); // Hide when empty
-            }
-        });
-    
-        // Fetch the existing filteredRecipesDiv from the DOM
-        let filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
-    
-        // Check if it exists in the DOM
-        if (!filteredRecipesDiv) {   
-            // Create the filteredRecipesDiv if not present
-            filteredRecipesDiv = document.createElement('div');
-            filteredRecipesDiv.classList.add('filteredRecipesDiv');
-            filterContainer.appendChild(filteredRecipesDiv); // Append it to the DOM
-        }
-    
-        // Make it visible if hidden
-        filteredRecipesDiv.classList.add('visible'); // Show it
-    
-        // Add the tag button to the filteredRecipesDiv
-        filteredRecipesDiv.appendChild(tagButton);
-    
-        // Ensure clear button is created and shown only if there are 3 or more tags
-        if (selectedTags.length >= 3) {
-            clearFilterTags(filterContainer);
-        }
-    
-        // Toggle clear button visibility after each tag creation
-        const clearButton = filterContainer.querySelector('.clear-btn');
-        toggleClearButton(filteredRecipesDiv, clearButton);
+
+export function createTagButton(tagName, filterContainer, selectedTagsArray) {
+    // Check if tag already exists
+    const existingTag = filterContainer.querySelector(`button.tag[data-tag="${tagName}"]`);
+    if (existingTag) return; // Tag already exists
+
+    // Limit to 3 tags
+    if (selectedTagsArray.length >= 3) {
+        const firstTag = selectedTagsArray.shift(); // Remove the first tag
+        const firstTagButton = filterContainer.querySelector(`button.tag[data-tag="${firstTag}"]`);
+        if (firstTagButton) firstTagButton.remove(); // Remove first tag button from DOM
     }
+
+    // Add new tag
+    selectedTagsArray.push(tagName);
+    const tagButton = document.createElement('button');
+    tagButton.classList.add('tag', 'filters');
+    tagButton.setAttribute('data-tag', tagName);
+    tagButton.textContent = tagName;
+
+    // Add remove icon and functionality
+    const removeIcon = document.createElement('i');
+    removeIcon.classList.add('fa-solid', 'fa-circle-xmark');
+    tagButton.appendChild(removeIcon);
+
+    removeIcon.addEventListener('click', () => {
+        tagButton.remove(); // Remove the tag button from DOM
+        const index = selectedTagsArray.indexOf(tagName);
+        if (index > -1) selectedTagsArray.splice(index, 1); // Remove the tag from the array
+        updateFilteredRecipes(); // Update recipes when tag is removed
+    });
+
+    // Add tag button to filteredRecipesDiv
+    let filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
+    if (!filteredRecipesDiv) {
+        filteredRecipesDiv = document.createElement('div');
+        filteredRecipesDiv.classList.add('filteredRecipesDiv');
+        filterContainer.appendChild(filteredRecipesDiv);
+    }
+    filteredRecipesDiv.classList.add('visible');
+    filteredRecipesDiv.appendChild(tagButton);
+
+    // Update recipes when new tag is added
+    updateFilteredRecipes();
+}
+
+
+function updateFilteredRecipes() {
+    const recipes = getAllRecipes(); // Fetch all recipes
+    const filteredRecipes = filterRecipesByTags(recipes, selectedTags); // Filter based on tags
+
+    if (filteredRecipes.length === 0) {
+        displayNoResultsMessage();
+    } else {
+        updateRecipeCards(filteredRecipes);
+    }
+    updateRecipesFound(filteredRecipes.length); // Update found recipes count
+}
