@@ -16,7 +16,7 @@ export function clearFilterTags(filterContainer) {
             if (filteredRecipesDiv) {
                 filteredRecipesDiv.innerHTML = ''; // Clear all tags
                 toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
-                filteredRecipesDiv.remove();  // Remove filteredRecipesDiv after clearing all tags
+                
             }
         });
 

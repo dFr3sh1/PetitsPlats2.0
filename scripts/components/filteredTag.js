@@ -1,9 +1,8 @@
 import { selectedTags } from "../index.js";
 import { getAllRecipes } from "../model/model.js";
-import { clearFilterTags } from "./clearTags.js";
-import { toggleClearButton } from "./clearTags.js";
 import { filterRecipesByTags } from "./filterTags.js";
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
+import { clearFilterTags, toggleClearButton } from "./clearTags.js";
 
 
 export function createTagButton(tagName, filterContainer, selectedTagsArray) {
@@ -34,6 +33,12 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
         tagButton.remove(); // Remove the tag button from DOM
         const index = selectedTagsArray.indexOf(tagName);
         if (index > -1) selectedTagsArray.splice(index, 1); // Remove the tag from the array
+        if(filteredRecipesDiv.querySelectorAll('button.tag').length === 0) {
+            filteredRecipesDiv.classList.remove('visible')
+        }
+
+        // toggleClearButton(filteredRecipesDiv, clearButton);
+        
         updateFilteredRecipes(); // Update recipes when tag is removed
     });
 
@@ -47,12 +52,20 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
     filteredRecipesDiv.classList.add('visible');
     filteredRecipesDiv.appendChild(tagButton);
 
+    //Clear button for 3 or more tags
+    // const clearButton = filterContainer.querySelector('.clear-btn');
+    // toggleClearButton(filteredRecipesDiv, clearButton);
+
+    // if(selectedTagsArray.length >= 3) {
+    //     clearFilterTags(filterContainer);
+    // }
+
     // Update recipes when new tag is added
     updateFilteredRecipes();
 }
 
 
-function updateFilteredRecipes() {
+export function updateFilteredRecipes() {
     const recipes = getAllRecipes(); // Fetch all recipes
     const filteredRecipes = filterRecipesByTags(recipes, selectedTags); // Filter based on tags
 
@@ -62,4 +75,5 @@ function updateFilteredRecipes() {
         updateRecipeCards(filteredRecipes);
     }
     updateRecipesFound(filteredRecipes.length); // Update found recipes count
+
 }
