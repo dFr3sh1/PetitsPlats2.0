@@ -5,7 +5,7 @@ import { filterRecipes } from "./filterRecipes.js";
 
 
 // filteredTag.js (createTagButton function)
-export function createTagButton(tagName, filterContainer, selectedTagsArray, recipes) {
+export function createTagButton(tagName, filterContainer, recipes, selectedTagsArray) {
     // Check if tag already exists
     const existingTag = filterContainer.querySelector(`button.tag[data-tag="${tagName}"]`);
     if (existingTag) return; // Tag already exists
@@ -19,8 +19,8 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray, rec
     }
     console.log("Recipes passed to createTagButton", recipes);
 
-
     // Limit to 3 tags
+    console.log(selectedTagsArray)
     if (selectedTagsArray.length >= 3) {
         const firstTag = selectedTagsArray.shift(); // Remove the first tag
         const firstTagButton = filterContainer.querySelector(`button.tag[data-tag="${firstTag}"]`);

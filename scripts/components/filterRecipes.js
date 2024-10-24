@@ -13,9 +13,15 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
     if (searchTerm.length >= 3) {
         filteredRecipes = recipes.filter(recipe => {
             const recipeTitle = recipe.title ? recipe.title.toLowerCase() : ''; 
-            const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
+            const recipeIngredients = recipe.forEach(ingredient => {
+                ingredient.toLowerCase();
+            });
+            //const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance ? recipe.appliance.toLowerCase() : '';
-            const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
+            const recipeUstensils = recipe.forEach(ustensil => {
+                ustensil.toLowerCase();
+            })
+            //const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
 
             // Match recipe title, ingredients, appliance, or utensils to search term
             return (
@@ -30,14 +36,20 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
     // Further filter by selected tags if any tags are present
     if (selectedIngredients.length > 0 || selectedAppliances.length > 0 || selectedUstensils.length > 0) {
         filteredRecipes = filteredRecipes.filter(recipe => {
-            const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
+            const recipeIngredients = recipe.forEach(ingredient => {
+                ingredient.toLowerCase();
+            })
+            //const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance ? recipe.appliance.toLowerCase() : '';
-            const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
+            const recipeUstensils = recipe.forEach(ustensil => {
+                ustensil.toLowerCase();
+            })
+            //const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
 
             // Check if the recipe contains all the selected tags
-            const matchesIngredients = selectedIngredients.every(tag => recipeIngredients.includes(tag.toLowerCase()));
-            const matchesAppliances = selectedAppliances.every(tag => recipeAppliance.includes(tag.toLowerCase()));
-            const matchesUstensils = selectedUstensils.every(tag => recipeUstensils.includes(tag.toLowerCase()));
+            const matchesIngredients = selectedIngredients.forEach(tag => recipeIngredients.includes(tag.toLowerCase()));
+            const matchesAppliances = selectedAppliances.forEach(tag => recipeAppliance.includes(tag.toLowerCase()));
+            const matchesUstensils = selectedUstensils.forEach(tag => recipeUstensils.includes(tag.toLowerCase()));
 
             return matchesIngredients && matchesAppliances && matchesUstensils;
         });

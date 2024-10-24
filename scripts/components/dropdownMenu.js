@@ -1,6 +1,6 @@
 import { handleOptionClick } from "../index.js";
 
-export function createDropdownMenu(btnElement, itemsArray) {
+export function createDropdownMenu(btnElement, itemsArray, recipes, selectedTags) {
     // Check if itemsArray is an array
     if (!Array.isArray(itemsArray)) {
         console.error('createDropdownMenu expected an array, but received:', itemsArray);
@@ -84,17 +84,14 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.classList.add('dropdown-item');
 
         optionItem.addEventListener('click', () => {
-            handleOptionClick(btnElement, item, recipes);
+            handleOptionClick(btnElement, item, recipes, selectedTags);
+            console.log(recipes)
             input.value= "";
             dropdownContainer.remove();
             changeBtnIcon(btnElement);
         });
 
         optionsList.appendChild(optionItem);
-
-        // if(optionItem === input.value){
-        //     optionItem.style.backgroundColor = 'yellow'
-        // }
     });
 
     dropdownContainer.appendChild(optionsList);

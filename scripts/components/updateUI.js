@@ -3,7 +3,6 @@ import RecipeCardTemplate from './card.js'
 export function updateRecipeCards(recipes) {
     const cardContainer = document.querySelector('.recipesSection');
     cardContainer.innerHTML = '';
-    console.log(cardContainer)
 
     recipes.forEach(recipe => {
         const card = new RecipeCardTemplate(recipe);
