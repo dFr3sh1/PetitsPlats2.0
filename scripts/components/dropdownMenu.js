@@ -84,7 +84,7 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.classList.add('dropdown-item');
 
         optionItem.addEventListener('click', () => {
-            handleOptionClick(btnElement, item);
+            handleOptionClick(btnElement, item, recipes);
             input.value= "";
             dropdownContainer.remove();
             changeBtnIcon(btnElement);

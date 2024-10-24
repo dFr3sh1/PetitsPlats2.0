@@ -4,6 +4,8 @@ export function getAllRecipes() {
     return recipes;
 }
 
+console.log(recipes)
+
 export function getAllIngredients() {
 
     const ingredientsSet = new Set();

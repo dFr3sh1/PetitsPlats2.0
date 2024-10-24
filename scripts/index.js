@@ -14,7 +14,7 @@
     };
 
     // Function to handle filter option click
-    export function handleOptionClick(filterElement, item) {
+    export function handleOptionClick(filterElement, item, recipes) {
         const filterContainer = filterElement.closest('.filter');
         const filterType = filterContainer.getAttribute('data-type');
 
@@ -33,8 +33,10 @@
             selectedTagsArray = selectedTags.ustensils;
         }
 
+        console.log("Recipes passed in handleOptionClick: ", recipes)
+
         // Pass the selectedTagsArray to createTagButton
-        createTagButton(item, filterContainer, selectedTagsArray);
+        createTagButton(item, filterContainer, selectedTagsArray, recipes);
     }
 
     // DOMContentLoaded event listener
@@ -43,31 +45,44 @@
         const filtersDiv = document.querySelector('.filtersDiv');
     
         try {
-            // Display all recipes
+            // Fetch all recipes and validate it is an array
             const recipes = getAllRecipes();
-    
-            // Check if recipes is an array
+            console.log("Fetched recipes: ", recipes)
             if (!Array.isArray(recipes)) {
-                throw new Error("Expected an array of recipes, but got " + typeof recipes);
+                throw new Error("Expected an array of recipes but got " + typeof recipes);
             }
     
+            // Display all recipes
             updateRecipeCards(recipes);
     
             // Init search functionality
             handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags);
-            updateFilters(recipes);  // Pass recipes here
+            updateFilters(recipes, selectedTags);
     
-            // Display filter ingredient
+            // Display filter ingredients
             const ingredients = getAllIngredients();
             const ingredientFilterButton = new Filter(ingredients, 'Ingrédients');
             ingredientFilterButton.DOMElement.setAttribute('data-type', 'ingredients'); 
             filtersDiv.appendChild(ingredientFilterButton.DOMElement);
     
+            // Event listener for dropdown and button icon toggle for ingredients
             ingredientFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
                 e.stopPropagation();
-                createDropdownMenu(ingredientFilterButton.DOMElement, ingredients);
+                createDropdownMenu(ingredientFilterButton.DOMElement, ingredients, recipes);
                 changeBtnIcon(ingredientFilterButton.DOMElement);
             });
+    
+            // Single tagSelected event listener for all tag selections
+            // ingredientFilterButton.DOMElement.addEventListener('tagSelected', (event) => {
+            //     const tagName = event.detail.tagName;
+            //     console.log("Tag selected: ", tagName);
+            //     console.log("Recipes at this point: ", recipes)
+            //     if (!Array.isArray(recipes)) {
+            //         console.error("Expected an array of recipes in createTagButton, but got: ", recipes);
+            //         return;
+            //     }
+            //     createTagButton(tagName, filtersDiv, selectedTags.ingredients, recipes);  // Pass recipes correctly here
+            // });
     
             // Display filter appliances
             const appliances = getAllAppliances();
@@ -75,24 +90,46 @@
             applianceFilterButton.DOMElement.setAttribute('data-type', 'appliances'); 
             filtersDiv.appendChild(applianceFilterButton.DOMElement);
     
+            // Event listener for dropdown and button icon toggle for appliances
             applianceFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
                 e.stopPropagation();
-                createDropdownMenu(applianceFilterButton.DOMElement, appliances);
+                createDropdownMenu(applianceFilterButton.DOMElement, appliances, recipes);
                 changeBtnIcon(applianceFilterButton.DOMElement);
             });
     
-            // Display filter ustensils
+            // TagSelected event for appliances (only added once)
+            // applianceFilterButton.DOMElement.addEventListener('tagSelected', (event) => {
+            //     const tagName = event.detail.tagName;
+            //     if (!Array.isArray(recipes)) {
+            //         console.error("Expected an array of recipes in createTagButton, but got: ", recipes);
+            //         return;
+            //     }
+            //     createTagButton(tagName, filtersDiv, selectedTags.appliances, recipes);  // Pass recipes correctly here
+            // });
+    
+            // Display filter utensils
             const ustensils = getAllUstensils();
             const ustensilFilterButton = new Filter(ustensils, 'Ustensiles');
             ustensilFilterButton.DOMElement.setAttribute('data-type', 'ustensils'); 
             filtersDiv.appendChild(ustensilFilterButton.DOMElement);
     
+            // Event listener for dropdown and button icon toggle for utensils
             ustensilFilterButton.DOMElement.querySelector('button').addEventListener('click', (e) => {
                 e.stopPropagation();
-                createDropdownMenu(ustensilFilterButton.DOMElement, ustensils);
+                createDropdownMenu(ustensilFilterButton.DOMElement, ustensils, recipes);
                 changeBtnIcon(ustensilFilterButton.DOMElement);
             });
-            
+    
+            // TagSelected event for utensils (only added once)
+            // ustensilFilterButton.DOMElement.addEventListener('tagSelected', (event) => {
+            //     const tagName = event.detail.tagName;
+            //     if (!Array.isArray(recipes)) {
+            //         console.error("Expected an array of recipes in createTagButton, but got: ", recipes);
+            //         return;
+            //     }
+            //     createTagButton(tagName, filtersDiv, selectedTags.ustensils, recipes);  // Pass recipes correctly here
+            // });
+    
         } catch (error) {
             console.error('Error in initializing filters:', error);
         }

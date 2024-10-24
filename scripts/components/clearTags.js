@@ -1,25 +1,36 @@
-export function clearFilterTags(filterContainer) {
+export function clearFilterTags(filterContainer, selectedTagsArray) {
     let clearButton = filterContainer.querySelector('.clear-btn');
 
     if (!clearButton) {
-        // Create the clear button with the text "Nettoyer la sélection"
+        // Create the clear button
         clearButton = document.createElement('button');
         clearButton.classList.add('clear-btn');
         clearButton.setAttribute('aria-label', 'Nettoyer la sélection');
         clearButton.setAttribute('role', 'button');
-        clearButton.setAttribute('tabindex', '0'); // Ensure keyboard access
-        clearButton.textContent = 'Nettoyer la sélection'; // Set the button text
+        clearButton.setAttribute('tabindex', '0');
+        clearButton.textContent = 'Nettoyer la sélection';
 
-        // Add event listener to clear all tags within this filter
+        // Event listener to clear all tags when clicked
         clearButton.addEventListener('click', () => {
             const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
             if (filteredRecipesDiv) {
-                filteredRecipesDiv.innerHTML = ''; // Clear all tags
-                toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
-                
+                filteredRecipesDiv.innerHTML = ''; // Clear all tags in the filteredRecipesDiv
+                filteredRecipesDiv.remove(); // Remove the div from the DOM when no tags are left
+                selectedTagsArray.length = 0; // Reset the selected tags array
+
+                clearButton.remove(); // Remove the clearButton from the DOM
+
+                // Update the filtered recipes based on the current search term
+                const allRecipes = getAllRecipes();
+                const searchTerm = document.querySelector('#searchBarInput').value.trim().toLowerCase();
+                const filteredRecipes = filterRecipes(allRecipes, searchTerm, selectedTags);  // Use the centralized filtering
+
+                updateRecipeCards(filteredRecipes); // Update the UI with the filtered recipes
+                updateRecipesFound(filteredRecipes.length); // Update the count
             }
         });
 
+        // Append the clear button after `filteredRecipesDiv`
         filterContainer.appendChild(clearButton);
     }
 
@@ -27,16 +38,15 @@ export function clearFilterTags(filterContainer) {
     toggleClearButton(filteredRecipesDiv, clearButton);  // Check whether to show or hide clear button
 }
 
+
 export function toggleClearButton(filteredRecipesDiv, clearButton) {
     const tagButtons = filteredRecipesDiv ? filteredRecipesDiv.querySelectorAll('button.tag') : [];
     const hasEnoughTags = tagButtons.length >= 3;
 
     // If the clearButton is null, return early
-    if (!clearButton) {
-        return;
-    }
+    if (!clearButton) return;
 
-    // If there are 3 or more tags, show the clear button; otherwise, hide it
+    // Show clear button if there are 3 or more tags; otherwise, hide/remove it
     if (hasEnoughTags) {
         clearButton.style.display = 'block';  // Show clear button
     } else {
