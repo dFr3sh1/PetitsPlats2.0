@@ -28,7 +28,7 @@ export function getAllUstensils() {
     const ustensilsSet = new Set();
     
     recipes.forEach(recipe => {
-        recipe.ustensils.forEach(ustensil => {
+        recipe.utensils.forEach(ustensil => {
             const normalizedUstensils = ustensil.trim().toLowerCase();
             ustensilsSet.add(normalizedUstensils);
         });

@@ -6,22 +6,16 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
         return [];
     }
 
-    const { ingredients: selectedIngredients, appliances: selectedAppliances, ustensils: selectedUstensils } = selectedTags;
+    const { ingredients: selectedIngredients, appliances: selectedAppliances, utensils: selectedUstensils } = selectedTags;
 
     // First, filter recipes based on the search term (if 3 or more characters are entered)
     let filteredRecipes = recipes;
     if (searchTerm.length >= 3) {
         filteredRecipes = recipes.filter(recipe => {
             const recipeTitle = recipe.title ? recipe.title.toLowerCase() : ''; 
-            const recipeIngredients = recipe.forEach(ingredient => {
-                ingredient.toLowerCase();
-            });
-            //const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
+            const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance ? recipe.appliance.toLowerCase() : '';
-            const recipeUstensils = recipe.forEach(ustensil => {
-                ustensil.toLowerCase();
-            })
-            //const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
+            const recipeUstensils = recipe.utensils.map(u => u.toLowerCase());
 
             // Match recipe title, ingredients, appliance, or utensils to search term
             return (
@@ -36,15 +30,9 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
     // Further filter by selected tags if any tags are present
     if (selectedIngredients.length > 0 || selectedAppliances.length > 0 || selectedUstensils.length > 0) {
         filteredRecipes = filteredRecipes.filter(recipe => {
-            const recipeIngredients = recipe.forEach(ingredient => {
-                ingredient.toLowerCase();
-            })
-            //const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
+            const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
             const recipeAppliance = recipe.appliance ? recipe.appliance.toLowerCase() : '';
-            const recipeUstensils = recipe.forEach(ustensil => {
-                ustensil.toLowerCase();
-            })
-            //const recipeUstensils = recipe.ustensils.map(u => u.toLowerCase());
+            const recipeUstensils = recipe.utensils.map(u => u.toLowerCase());
 
             // Check if the recipe contains all the selected tags
             const matchesIngredients = selectedIngredients.forEach(tag => recipeIngredients.includes(tag.toLowerCase()));

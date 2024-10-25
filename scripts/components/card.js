@@ -9,7 +9,7 @@ class RecipeCardTemplate {
         this.time = data.time;
         this.description = data.description;
         this.appliance = data.appliance
-        this.ustensils = data.ustensils
+        this.utensils = data.utensils
         this.DOMElement = this.createCard()
     }
 
@@ -114,7 +114,7 @@ class RecipeCardTemplate {
 
         const ustensilsContainer = document.createElement('div');
 
-        this.ustensils.forEach(item => {
+        this.utensils.forEach(item => {
 
             const ustensil = document.createElement('p');
             ustensil.textContent = item

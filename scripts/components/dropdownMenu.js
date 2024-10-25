@@ -1,4 +1,4 @@
-import { handleOptionClick } from "../index.js";
+import { handleOptionClick, selectedTags } from "../index.js";
 
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
@@ -84,7 +84,8 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.classList.add('dropdown-item');
 
         optionItem.addEventListener('click', () => {
-            handleOptionClick(btnElement, item);
+            handleOptionClick(btnElement, item, selectedTags);
+            console.log("Dropdown selected tags", selectedTags)
             input.value= "";
             dropdownContainer.remove();
             changeBtnIcon(btnElement);

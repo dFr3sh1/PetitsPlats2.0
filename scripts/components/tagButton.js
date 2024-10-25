@@ -3,6 +3,7 @@ import { getAllRecipes } from "../model/model.js";
 import { filterRecipesByTags } from "./filterTags.js";
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
 import { clearFilterTags, toggleClearButton } from "./clearTags.js";
+import { filterRecipes } from "./filterRecipes.js";
 
 
 export function createTagButton(tagName, filterContainer, selectedTagsArray) {
@@ -53,14 +54,14 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
     filteredRecipesDiv.appendChild(tagButton);
 
     //Clear button for 3 or more tags
-    // const clearButton = filterContainer.querySelector('.clear-btn');
-    // toggleClearButton(filteredRecipesDiv, clearButton);
+    const clearButton = filterContainer.querySelector('.clear-btn');
+    toggleClearButton(filteredRecipesDiv, clearButton);
 
-    // if(selectedTagsArray.length >= 3) {
-    //     clearFilterTags(filterContainer);
-    // }
+    if(selectedTagsArray.length >= 3) {
+        clearFilterTags(filterContainer);
+    }
 
-    // Update recipes when new tag is added
+    //Update recipes when new tag is added
     updateFilteredRecipes();
 }
 
