@@ -1,9 +1,6 @@
-import { selectedTags } from "../index.js";
-import { getAllRecipes } from "../model/model.js";
-import { filterRecipesByTags } from "./filterTags.js";
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
 import { clearFilterTags, toggleClearButton } from "./clearTags.js";
-import { filterRecipes } from "./filterRecipes.js";
+
 
 
 export function createTagButton(tagName, filterContainer, selectedTagsArray) {
@@ -30,6 +27,7 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
     removeIcon.classList.add('fa-solid', 'fa-circle-xmark');
     tagButton.appendChild(removeIcon);
 
+    //Remove tag on clicking the remove icon
     removeIcon.addEventListener('click', () => {
         tagButton.remove(); // Remove the tag button from DOM
         const index = selectedTagsArray.indexOf(tagName);
@@ -66,9 +64,7 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
 }
 
 
-export function updateFilteredRecipes() {
-    const recipes = getAllRecipes(); // Fetch all recipes
-    const filteredRecipes = filterRecipesByTags(recipes, selectedTags); // Filter based on tags
+export function updateFilteredRecipes(filteredRecipes) {
 
     if (filteredRecipes.length === 0) {
         displayNoResultsMessage();

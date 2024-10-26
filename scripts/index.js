@@ -42,6 +42,7 @@ export function handleOptionClick(filterElement, item, selectedTags) {
     } catch (error) {
         console.error('Error creating tag button: ' + error);
     }
+    // Give time to fetch let selectedTags
     setTimeout(() => {
         console.log(selectedTags);
     }, 0)

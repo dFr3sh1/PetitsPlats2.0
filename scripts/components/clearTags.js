@@ -1,4 +1,8 @@
-export function clearFilterTags(filterContainer) {
+import { selectedTags } from "../index.js";
+import { getAllRecipes } from "../model/model.js";
+import { filterRecipes } from "./filterRecipes.js";
+
+export function clearFilterTags(filterContainer, selectedTagsArray) {
     let clearButton = filterContainer.querySelector('.clear-btn');
 
     if (!clearButton) {
@@ -15,8 +19,20 @@ export function clearFilterTags(filterContainer) {
             const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
             if (filteredRecipesDiv) {
                 filteredRecipesDiv.innerHTML = ''; // Clear all tags
-                toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
+                filteredRecipesDiv.remove();
+                if (selectedTagsArray) {
+                    selectedTagsArray.length = 0;
+                    console.log("Clear tags ", selectedTagsArray);
+                } else {
+                    console.error('selectedTagsArray is undefined');
+                }
+                clearButton.remove();
+                const allRecipes = getAllRecipes();
+                const searchTerm = document.querySelector('#searchBar');
+                const filteredRecipes = filterRecipes(allRecipes, searchTerm, selectedTags);
                 
+                updateRecipeCards(filteredRecipes);
+                updateRecipesFound(filteredRecipes.length)
             }
         });
 
