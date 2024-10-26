@@ -7,12 +7,12 @@ import { handleSearchInput, updateFilters } from './components/searchBar.js';
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from './components/updateUI.js';
 
 // Stock the selectedTags
-export const selectedTags = {
+export let selectedTags = {
     ingredients: [],
     appliances: [],
     utensils: [],
 };
-
+console.log("Selected tags after dropdowMenu click: ", selectedTags)
 // Function to handle filter option click
 export function handleOptionClick(filterElement, item, selectedTags) {
     const filterContainer = filterElement.closest('.filter');
@@ -42,6 +42,9 @@ export function handleOptionClick(filterElement, item, selectedTags) {
     } catch (error) {
         console.error('Error creating tag button: ' + error);
     }
+    setTimeout(() => {
+        console.log(selectedTags);
+    }, 0)
 }
 
 // DOMContentLoaded event listener
