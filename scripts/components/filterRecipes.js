@@ -25,6 +25,8 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
                 recipeUstensils.some(utensil => utensil.includes(searchTerm))
             );
         });
+
+        console.log("Filtered Recipes filterRecipes.js", filteredRecipes)
     }
 
     // Further filter by selected tags if any tags are present
@@ -43,5 +45,7 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
         });
     }
 
+    console.log("Real filtered recipes", filteredRecipes)
     return filteredRecipes;
+    
 }

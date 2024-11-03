@@ -1,4 +1,4 @@
-import { selectedTags } from "../index.js";
+import { selectedTags } from "./tagManager.js";
 import { getAllRecipes } from "../model/model.js";
 import { filterRecipesByTags } from "./filterTags.js";
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";

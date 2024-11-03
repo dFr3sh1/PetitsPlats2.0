@@ -1,51 +1,45 @@
 import { getAllRecipes, getAllAppliances, getAllIngredients, getAllUstensils } from './model/model.js';
 import RecipeCardTemplate from './components/card.js';
 import Filter from './components/filter.js';
-import { createTagButton } from './components/tagButton.js';
+import { createTagButton } from './components/createTagButton.js';
 import { createDropdownMenu, changeBtnIcon } from './components/dropdownMenu.js';
 import { handleSearchInput, updateFilters } from './components/searchBar.js';
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from './components/updateUI.js';
+import { selectedTags } from './components/tagManager.js';
 
-// Stock the selectedTags
-export let selectedTags = {
-    ingredients: [],
-    appliances: [],
-    utensils: [],
-};
-console.log("Selected tags after dropdowMenu click: ", selectedTags)
 // Function to handle filter option click
-export function handleOptionClick(filterElement, item, selectedTags) {
-    const filterContainer = filterElement.closest('.filter');
-    const filterType = filterContainer.getAttribute('data-type');
+// export function handleOptionClick(filterElement, item, selectedTags) {
+//     const filterContainer = filterElement.closest('.filter');
+//     const filterType = filterContainer.getAttribute('data-type');
 
-    if (!filterType) {
-        console.error('Unrecognized filter type.' + filterType);
-        return;
-    }
+//     if (!filterType) {
+//         console.error('Unrecognized filter type.' + filterType);
+//         return;
+//     }
 
-    // Get the correct selectedTags array based on the filter type
-    let selectedTagsArray;
-    if (filterType === 'ingredients') {
-        selectedTagsArray = selectedTags.ingredients;
-    } else if (filterType === 'appliances') {
-        selectedTagsArray = selectedTags.appliances;
-    } else if (filterType === 'utensils') {
-        selectedTagsArray = selectedTags.utensils;
-    } else {
-        console.error('Invalid filter type: ' + filterType);
-        return;
-    }
+//     // Get the correct selectedTags array based on the filter type
+//     let selectedTagsArray;
+//     if (filterType === 'ingredients') {
+//         selectedTagsArray = selectedTags.ingredients;
+//     } else if (filterType === 'appliances') {
+//         selectedTagsArray = selectedTags.appliances;
+//     } else if (filterType === 'utensils') {
+//         selectedTagsArray = selectedTags.utensils;
+//     } else {
+//         console.error('Invalid filter type: ' + filterType);
+//         return;
+//     }
 
-    // Create tag button with improved error handling
-    try {
-        createTagButton(item, filterContainer, selectedTagsArray);
-    } catch (error) {
-        console.error('Error creating tag button: ' + error);
-    }
-    setTimeout(() => {
-        console.log(selectedTags);
-    }, 0)
-}
+//     // Create tag button with improved error handling
+//     try {
+//         createTagButton(item, filterContainer, selectedTagsArray);
+//     } catch (error) {
+//         console.error('Error creating tag button: ' + error);
+//     }
+//     setTimeout(() => {
+//         console.log(selectedTags);
+//     }, 0)
+// }
 
 // DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", function () {
@@ -65,7 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Init search functionality
         handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags);
-        updateFilters(recipes);  // Pass recipes here
+        updateFilters(recipes); 
 
         // Display filter ingredient
         const ingredients = getAllIngredients();

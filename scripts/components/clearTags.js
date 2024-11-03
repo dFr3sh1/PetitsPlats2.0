@@ -1,7 +1,7 @@
-import {selectedTags } from "./clearTag.js";
+import {selectedTags } from "./tagManager.js";
 import { updateFilteredRecipes } from "./recipesManager.js";
 
-export function clearFilterTags(filterContainer) {
+export function clearFilterTags(filterContainer, filteredRecipes) {
     let clearButton = filterContainer.querySelector('.clear-btn');
 
     if (!clearButton) {
@@ -20,7 +20,7 @@ export function clearFilterTags(filterContainer) {
                 filteredRecipesDiv.innerHTML = ''; // Clear all tags
                 toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
                 filteredRecipesDiv.remove();
-                updateFilteredRecipes();
+                updateFilteredRecipes(selectedTags, filteredRecipes, filteredRecipesDiv);
                 selectedTags[filterType].length = 0;
                 
             }

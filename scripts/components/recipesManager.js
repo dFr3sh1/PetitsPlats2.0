@@ -2,7 +2,7 @@ import { displayNoResultsMessage } from './updateUI.js';
 import { getAllRecipes } from '../model/model.js';
 
 
-export function updateFilteredRecipes(selectedTags, filteredRecipesDiv) {
+export function updateFilteredRecipes(selectedTags, filteredRecipes, filteredRecipesDiv) {
     const { ingredients, appliances, utensils } = selectedTags;
     const recipes = getAllRecipes()
 

@@ -1,4 +1,4 @@
-export const selectedTags = {
+export let selectedTags = {
     ingredients: [],
     appliances: [],
     utensils: [],

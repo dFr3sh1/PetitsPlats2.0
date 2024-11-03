@@ -1,48 +1,38 @@
-import { selectedTags, addTag } from './tagManager.js';
-import { updateFilteredRecipes } from './recipesManager.js';
 import { createTagButton } from './createTagButton.js';
 
 // Function to manage the selected tag from the dropdown
-export function handleOptionClick(filterElement, item, selectedTags, filteredRecipes, filteredRecipesDiv) {
-
-    // export function handleOptionClick(filterElement, item, selectedTags, filteredRecipes, filteredRecipesDiv) {
+export function handleOptionClick(filterElement, item, selectedTags) {
     const filterContainer = filterElement.closest('.filter');
     const filterType = filterContainer.getAttribute('data-type');
 
     if (!filterType) {
-        console.error('Unrecognized filter type:', filterType);
+        console.error('Unrecognized filter type.' + filterType);
         return;
     }
 
-    addTag(filterType, item)
+    // Get the correct selectedTags array based on the filter type
+    let selectedTagsArray;
+    if (filterType === 'ingredients') {
+        selectedTagsArray = selectedTags.ingredients;
+    } else if (filterType === 'appliances') {
+        selectedTagsArray = selectedTags.appliances;
+    } else if (filterType === 'utensils') {
+        selectedTagsArray = selectedTags.utensils;
+    } else {
+        console.error('Invalid filter type: ' + filterType);
+        return;
+    }
 
-        try {
-            // Ensure filteredRecipesDiv is defined before passing
-
-            if (filteredRecipesDiv) {
-                createTagButton(item, filterContainer, selectedTags, filteredRecipes, filteredRecipesDiv);
-            } else {
-                console.error('filteredRecipesDiv is not defined.');
-            }
-        } catch (error) {
-            console.error('Error creating tag button:', error);
-        }
-
-        // Call `updateFilteredRecipes` if `filteredRecipesDiv` is defined
-        if (filteredRecipesDiv) {
-            updateFilteredRecipes(selectedTags, filteredRecipes, filteredRecipesDiv)
-        } else {
-            console.error("filteredRecipesDiv is undefined; cannot update filtered recipes.");
-        }
-        // else {
-        //     console.warn(`Tag "${item}" is already selected in "${filterType}"`);
-        // }
-    
-        // Log `selectedTags` after a delay to ensure asynchronous updates
-        setTimeout(() => {
-            console.log("Updated selected tags:", selectedTags);
-        }, 0);
-        }
+    // Create tag button with improved error handling
+    try {
+        createTagButton(item, filterContainer, selectedTagsArray);
+    } catch (error) {
+        console.error('Error creating tag button: ' + error);
+    }
+    setTimeout(() => {
+        console.log(selectedTags);
+    }, 0)
+}
 
 
 
