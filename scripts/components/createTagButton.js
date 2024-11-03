@@ -1,3 +1,9 @@
+<<<<<<< HEAD:scripts/components/tagButton.js
+=======
+import { selectedTags } from "./tagManager.js";
+import { getAllRecipes } from "../model/model.js";
+import { filterRecipesByTags } from "./filterTags.js";
+>>>>>>> 049c2395974666fe896c0014f516f8a95e3adae0:scripts/components/createTagButton.js
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
 import { clearFilterTags, toggleClearButton } from "./clearTags.js";
 

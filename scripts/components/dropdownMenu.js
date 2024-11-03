@@ -1,5 +1,7 @@
-import { handleOptionClick, selectedTags } from "../index.js";
+import { selectedTags } from "./tagManager.js";
+import { handleOptionClick } from "./OptionClickManager.js";
 
+// Function to handle filter option click
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
     if (!Array.isArray(itemsArray)) {

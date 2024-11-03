@@ -1,8 +1,15 @@
+<<<<<<< HEAD
 import { selectedTags } from "../index.js";
 import { getAllRecipes } from "../model/model.js";
 import { filterRecipes } from "./filterRecipes.js";
 
 export function clearFilterTags(filterContainer, selectedTagsArray) {
+=======
+import {selectedTags } from "./tagManager.js";
+import { updateFilteredRecipes } from "./recipesManager.js";
+
+export function clearFilterTags(filterContainer, filteredRecipes) {
+>>>>>>> 049c2395974666fe896c0014f516f8a95e3adae0
     let clearButton = filterContainer.querySelector('.clear-btn');
 
     if (!clearButton) {
@@ -19,6 +26,7 @@ export function clearFilterTags(filterContainer, selectedTagsArray) {
             const filteredRecipesDiv = filterContainer.querySelector('.filteredRecipesDiv');
             if (filteredRecipesDiv) {
                 filteredRecipesDiv.innerHTML = ''; // Clear all tags
+<<<<<<< HEAD
                 filteredRecipesDiv.remove();
                 if (selectedTagsArray) {
                     selectedTagsArray.length = 0;
@@ -30,6 +38,12 @@ export function clearFilterTags(filterContainer, selectedTagsArray) {
                 const allRecipes = getAllRecipes();
                 const searchTerm = document.querySelector('#searchBar');
                 const filteredRecipes = filterRecipes(allRecipes, searchTerm, selectedTags);
+=======
+                toggleClearButton(filteredRecipesDiv, clearButton); // Hide clear button after clearing tags
+                filteredRecipesDiv.remove();
+                updateFilteredRecipes(selectedTags, filteredRecipes, filteredRecipesDiv);
+                selectedTags[filterType].length = 0;
+>>>>>>> 049c2395974666fe896c0014f516f8a95e3adae0
                 
                 updateRecipeCards(filteredRecipes);
                 updateRecipesFound(filteredRecipes.length)

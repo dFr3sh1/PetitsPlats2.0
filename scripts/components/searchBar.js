@@ -10,7 +10,9 @@ export function handleSearchInput(recipes, updateRecipeCards, displayNoResultsMe
     searchBar.addEventListener('input', (e) => {
         const searchTerm = e.target.value.trim().toLowerCase();
 
-        const filteredRecipes = filterRecipes(recipes, searchTerm, selectedTags);
+        //Search only if 3 or more characters are entered
+        if (searchTerm.length >= 3 || selectedTags.ingredients.length > 0 || selectedTags.appliances.length > 0 || selectedTags.utensils.length > 0) {
+            const filteredRecipes = filterRecipes(recipes, searchTerm, selectedTags);
 
         //handle displaying no results
         updateRecipesFound(filteredRecipes.length);
@@ -19,48 +21,10 @@ export function handleSearchInput(recipes, updateRecipeCards, displayNoResultsMe
         } else {
             displayNoResultsMessage();
         }
-
-        //Search only if 3 or more characters are entered
-        // if (searchTerm.length >= 3 || selectedTags.ingredients.length > 0 || selectedTags.appliances.length > 0 || selectedTags.utensils.length > 0) {
-
-        //     //Filter recipes based on search term or selected tags
-        //     let filteredRecipes = recipes.filter(recipe => {
-        //         const recipeTitle = recipe.title ? recipe.title.toLowerCase() : '';
-        //         const recipeIngredients = Array.isArray(recipe.ingredients) ? recipe.ingredients.map(i => i.ingredient.toLowerCase()) : [];
-        //         const recipeAppliance = recipe.appliance ? recipe.appliance.toLowerCase() : '';
-        //         const recipeUstensils = Array.isArray(recipe.utensils) ? recipe.utensils.map(u => u.toLowerCase()) : [];
-
-        //         //Check if any of the fields match the search term
-        //         const titleMatches = recipeTitle.includes(searchTerm);
-        //         const ingredientsMatch = recipeIngredients.some(ingredient => ingredient.includes(searchTerm));
-        //         const applianceMatches = recipeAppliance.includes(searchTerm);
-        //         const ustensilsMatch = recipeUstensils.some(utensil => utensil.includes(searchTerm));
-
-        //         return titleMatches || ingredientsMatch || applianceMatches || ustensilsMatch;
-        //     });
-
-        //     // Further refine by selected tags (intersection logic)
-        //     // if (selectedTags.ingredients.length > 0 || selectedTags.appliances.length > 0 || selectedTags.utensils.length > 0) {
-        //     //     filteredRecipes = filteredRecipes.filter(recipe => {
-        //     //         const recipeIngredients = recipe.ingredients.map(i => i.ingredient.toLowerCase());
-        //     //         const recipeAppliances = recipe.appliance.toLowerCase();
-        //     //         const recipeUstensils = recipe.utensils.map(u => u.toLowerCase());
-
-        //     //         const matchesIngredients = selectedTags.ingredients.every(tag => recipeIngredients.includes(tag.toLowerCase()));
-        //     //         const matchesAppliances = selectedTags.appliances.every(tag => recipeAppliances.includes(tag.toLowerCase()));
-        //     //         const matchesUstensils = selectedTags.utensils.every(tag => recipeUstensils.includes(tag.toLowerCase()));
-
-        //     //         return matchesIngredients && matchesAppliances && matchesUstensils
-        //     //     });
-        //     // }
-
-        // } else {
-        //     // If less than 3 characters entered, show all recipes again
-        //     updateRecipesFound(recipes.length);
-        //     updateRecipeCards(recipes);
-        // }
-    });
+    }
+})
 }
+
 
 export function updateFilters(filteredRecipes) {
     const ingredients = getUniqueIngredientsFromRecipes(filteredRecipes);
