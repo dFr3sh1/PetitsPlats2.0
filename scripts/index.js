@@ -7,39 +7,6 @@ import { handleSearchInput, updateFilters } from './components/searchBar.js';
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from './components/updateUI.js';
 import { selectedTags } from './components/tagManager.js';
 
-// Function to handle filter option click
-// export function handleOptionClick(filterElement, item, selectedTags) {
-//     const filterContainer = filterElement.closest('.filter');
-//     const filterType = filterContainer.getAttribute('data-type');
-
-//     if (!filterType) {
-//         console.error('Unrecognized filter type.' + filterType);
-//         return;
-//     }
-
-//     // Get the correct selectedTags array based on the filter type
-//     let selectedTagsArray;
-//     if (filterType === 'ingredients') {
-//         selectedTagsArray = selectedTags.ingredients;
-//     } else if (filterType === 'appliances') {
-//         selectedTagsArray = selectedTags.appliances;
-//     } else if (filterType === 'utensils') {
-//         selectedTagsArray = selectedTags.utensils;
-//     } else {
-//         console.error('Invalid filter type: ' + filterType);
-//         return;
-//     }
-
-//     // Create tag button with improved error handling
-//     try {
-//         createTagButton(item, filterContainer, selectedTagsArray);
-//     } catch (error) {
-//         console.error('Error creating tag button: ' + error);
-//     }
-//     setTimeout(() => {
-//         console.log(selectedTags);
-//     }, 0)
-// }
 
 // DOMContentLoaded event listener
 document.addEventListener("DOMContentLoaded", function () {
