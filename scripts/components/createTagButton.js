@@ -1,6 +1,7 @@
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from "./updateUI.js";
 import { clearFilterTags, toggleClearButton } from "./clearTags.js";
-
+import { selectedTags } from "./tagManager.js";
+import { filterRecipes } from "./filterRecipes.js";
 
 
 export function createTagButton(tagName, filterContainer, selectedTagsArray) {
@@ -9,14 +10,15 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
     if (existingTag) return; // Tag already exists
 
     // Limit to 3 tags
-    if (selectedTagsArray.length >= 3) {
+    if (selectedTagsArray.length >= 4) {
         const firstTag = selectedTagsArray.shift(); // Remove the first tag
         const firstTagButton = filterContainer.querySelector(`button.tag[data-tag="${firstTag}"]`);
         if (firstTagButton) firstTagButton.remove(); // Remove first tag button from DOM
     }
 
     // Add new tag
-    selectedTagsArray.push(tagName);
+    //selectedTagsArray.push(tagName);
+    console.log("Displays selectedTagsArray of button creation, from createTagButton", selectedTagsArray)
     const tagButton = document.createElement('button');
     tagButton.classList.add('tag', 'filters');
     tagButton.setAttribute('data-tag', tagName);
@@ -35,10 +37,9 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
         if(filteredRecipesDiv.querySelectorAll('button.tag').length === 0) {
             filteredRecipesDiv.classList.remove('visible')
         }
-
         // toggleClearButton(filteredRecipesDiv, clearButton);
         
-        updateFilteredRecipes(); // Update recipes when tag is removed
+        //updateFilteredRecipes(selectedTags); // Update recipes when tag is removed
     });
 
     // Add tag button to filteredRecipesDiv
@@ -60,17 +61,19 @@ export function createTagButton(tagName, filterContainer, selectedTagsArray) {
     }
 
     //Update recipes when new tag is added
-    updateFilteredRecipes();
+    //updateFilteredRecipes(selectedTags);
 }
 
 
-export function updateFilteredRecipes(filteredRecipes) {
+// export function updateFilteredRecipes(recipes, filterType, selectedTags) {
 
-    if (filteredRecipes.length === 0) {
-        displayNoResultsMessage();
-    } else {
-        updateRecipeCards(filteredRecipes);
-    }
-    updateRecipesFound(filteredRecipes.length); // Update found recipes count
+//     const filteredRecipes = filteredRecipes(recipes, filterType, selectedTags)
+//     console.log(filteredRecipes);
+//     if (filteredRecipes.length === 0) {
+//         displayNoResultsMessage();
+//     } else {
+//         updateRecipeCards(filteredRecipes);
+//     }
+//     updateRecipesFound(filteredRecipes.length); // Update found recipes count
 
-}
+// }

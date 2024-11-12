@@ -1,5 +1,6 @@
 import { handleSearchInput } from './searchBar.js';
-import { updateRecipeCards, displayNoResultsMessage } from './updateUI.js';
+import { updateRecipeCards, displayNoResultsMessage, updateRecipesFound } from './updateUI.js';
+
 
 // Initialize event listeners for search and tags
 export function initEventListeners(recipes, selectedTags) {
@@ -15,6 +16,7 @@ export function initEventListeners(recipes, selectedTags) {
                 displayNoResultsMessage();
             } else {
                 updateRecipeCards(filteredRecipes);
+                updateRecipesFound(filteredRecipes);
             }
         });
     });

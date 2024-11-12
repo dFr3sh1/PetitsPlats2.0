@@ -1,4 +1,7 @@
-import { handleOptionClick, selectedTags } from "../index.js";
+import recipes from "../data/recipes.js";
+import { handleOptionClick } from "./adminOptionClick.js";
+import { selectedTags } from "./tagManager.js";
+import { updateRecipeCards, updateRecipesFound } from "./updateUI.js";
 
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
@@ -84,8 +87,8 @@ export function createDropdownMenu(btnElement, itemsArray) {
         optionItem.classList.add('dropdown-item');
 
         optionItem.addEventListener('click', () => {
-            handleOptionClick(btnElement, item, selectedTags);
-            console.log("Dropdown selected tags", selectedTags)
+            handleOptionClick(btnElement, item, selectedTags, recipes);
+            console.log("Displays selectedTags arrays, from createDropDownMenu ", selectedTags)
             input.value= "";
             dropdownContainer.remove();
             changeBtnIcon(btnElement);
