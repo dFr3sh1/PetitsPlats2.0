@@ -3,6 +3,7 @@ import { handleOptionClick } from "./adminOptionClick.js";
 import { selectedTags } from "./tagManager.js";
 import { updateRecipeCards, updateRecipesFound } from "./updateUI.js";
 
+// Function to handle filter option click
 export function createDropdownMenu(btnElement, itemsArray) {
     // Check if itemsArray is an array
     if (!Array.isArray(itemsArray)) {

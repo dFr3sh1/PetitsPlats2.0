@@ -27,6 +27,8 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
                 recipeUtensils.some(utensil => utensil.includes(searchTerm))
             );
         });
+
+        console.log("Filtered Recipes filterRecipes.js", filteredRecipes)
     }
 
     // Further refine by selected tags (intersection logic)
@@ -45,6 +47,7 @@ export function filterRecipes(recipes, searchTerm, selectedTags) {
         });
     }
 
+    console.log("Real filtered recipes", filteredRecipes)
     return filteredRecipes;
 }
 

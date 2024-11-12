@@ -4,7 +4,7 @@ import { createDropdownMenu, changeBtnIcon } from './components/createDropdownMe
 import { handleSearchInput } from './components/searchBar.js';
 import { updateFilters } from './components/filterRecipes.js';
 import { updateRecipeCards, updateRecipesFound, displayNoResultsMessage } from './components/updateUI.js';
-import { selectedTags} from './components/tagManager.js'
+
 
 // Display all recipes
 export const recipes = getAllRecipes();
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Init search functionality
         handleSearchInput(recipes, updateRecipeCards, displayNoResultsMessage, updateRecipesFound, selectedTags);
-        updateFilters(recipes); 
+        updateFilters(recipes);  // Pass recipes here
 
         // Display filter ingredient
         const ingredients = getAllIngredients();

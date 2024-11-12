@@ -1,4 +1,4 @@
-import { selectedTags } from "./tagManager.js";
+import { selectedTags } from "../index.js";
 import { getAllRecipes } from "../model/model.js";
 import { filterRecipes } from "./filterRecipes.js";
 
